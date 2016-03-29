@@ -4,9 +4,17 @@
         <servlet-name>AdminIndexController</servlet-name>
         <servlet-class>AdminPackage.AdminIndexController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IndexController</servlet-name>
+        <servlet-class>UserController.IndexController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminIndexController</servlet-name>
         <url-pattern>/AdminIndexController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IndexController</servlet-name>
+        <url-pattern>/IndexController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
