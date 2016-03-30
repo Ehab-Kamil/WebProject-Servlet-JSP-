@@ -8,6 +8,10 @@
         <servlet-name>IndexController</servlet-name>
         <servlet-class>UserController.IndexController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminProductController</servlet-name>
+        <servlet-class>AdminPackage.AdminProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminIndexController</servlet-name>
         <url-pattern>/AdminIndexController</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
         <url-pattern>/IndexController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminProductController</servlet-name>
+        <url-pattern>/AdminProductController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

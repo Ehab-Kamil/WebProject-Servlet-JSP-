@@ -5,8 +5,12 @@
  */
 package AdminPackage;
 
+import dao.CategoriesDao;
+import entity.Categories;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +60,15 @@ public class AdminProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+    
+         CategoriesDao cDao = new CategoriesDao();
+         ArrayList<Categories> cList = cDao.selectAll();
+         
+         request.setAttribute("categories", cList);
+         RequestDispatcher rd = request.getRequestDispatcher("/AdminPages/AdminShowProducts.jsp");
+         rd.forward(request, response);
+
+    
     }
 
     /**
