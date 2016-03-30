@@ -22,15 +22,12 @@
                 <h1>&nbsp; &nbsp; Products</h1>
             </div><br><br>
             <div id="table" class="table-editable">
-                <span class="table-add glyphicon glyphicon-plus"></span>
                 <table class="table" bgcolor="#006600">
                     <tr>
-                        <th>Name</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>Id</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Product Category</th>
                     </tr>
 
                     <c:forEach items="${requestScope.categories}" var="cat">
@@ -48,31 +45,18 @@
                             </tr>     
                         </c:forEach>
                     </c:forEach>
-                    <!-- This is our clonable table line -->
-                    <tr class="hide">
-                        <td contenteditable="true">Untitled</td>
-                        <td><a href="/WebProject/EditCategoryController?cid=0">Edit</a>
-                        <td>View products</td>
-                        <td>
-                            <!--<span class="table-remove glyphicon glyphicon-remove"></span>-->
-                            <a class="table-remove1">Delete</a>
-                        </td>
-                        <td>
-                            <span class="table-up glyphicon glyphicon-arrow-up"></span>
-                            <span class="table-down glyphicon glyphicon-arrow-down"></span>
-                        </td>
-                    </tr>
                 </table>
             </div>
             <!--<button id="export-btn" class="btn btn-primary" >Export</button>-->
-            <a href="/WebProject/AdminIndexController" class="btn btn-primary">Go to home page</a>
+            <a href="/WebProjectServletJsp/AdminPages/AdminAddProduct.jsp" class="btn btn-primary">Add Product</a>
+            <a href="/WebProjectServletJsp/AdminIndexController" class="btn btn-primary">Go to home page</a>
             <!--<p id="export"></p>-->
         </div>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
         <script src='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js'></script>
-        <script src="js/allCategories.js"></script>
+        <script src="/WebProjectServletJsp/js/allCategories.js"></script>
     </body>
 </html>
 <br>

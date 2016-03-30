@@ -83,7 +83,7 @@
                            
                              
                              <li><a href="/WebProject/AdminAllCategoriesController" id="color4"><span>Show All Categories</span></a></li>
-                             <li><a href="/WebProject/AdminIndexController" id="color4"><span>Show All Products</span></a></li>
+                             <li><a href="/WebProjectServletJsp/AdminProductController" id="color4"><span>Show All Products</span></a></li>
                              <li><a href="/WebProject/AdminAllUsersController" id="color4"><span>Show All User</span></a></li>
                         </ul> 
                     </div>
