@@ -5,13 +5,22 @@
  */
 package AdminPackage;
 
+import dao.ProductDao;
+import entity.Product;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -72,7 +81,61 @@ public class AdminAddProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+    
+        ProductDao pDao = new ProductDao();
+        Product product = new Product();
+         try {
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+            ServletFileUpload upload = new ServletFileUpload(factory);
+            List<FileItem> items = upload.parseRequest(request);
+            Iterator<FileItem> iter = items.iterator();
+            while (iter.hasNext()) {
+                
+                FileItem item = iter.next();
+                
+                if (item.isFormField()) {
+                    String name = item.getFieldName();
+                    String value = item.getString();
+                    switch (name) {
+                        case "productName":
+                            product.setProductName(value);
+                            break;
+                        case "productDesc":
+                            product.setProductDescription(value);
+                            break;
+                        case "productPrice":
+                            product.setProductPrice(Float.parseFloat(value));
+                            break;
+                        case "productQuantityAvailable":
+                            product.setProductQuntityavailable(Integer.parseInt(value));
+                            break;
+                        case "productQuantitySold":
+                            product.setProductQuntitysold(Integer.parseInt(value));
+                            break;
+                        case "productCategory":
+                            product.setCategoriesIdcategory(Integer.parseInt(value));
+                            break;
+                    }
+                } else {
+                    if (!item.isFormField()) {
+          //              item.write(new File(getClass().getClassLoader().getResource("WebProject/images/")+item.getName()));
+            //           item.write(new File(request.getContextPath()+"/web/images/" + item.getName()));
+                        item.write(new File("H:\\ITI\\WebTechnology\\WebProject\\WebProject\\web\\images\\" + item.getName()));
+                        product.setProductImg("H:\\ITI\\WebTechnology\\WebProject\\WebProject\\web\\images\\" + item.getName());
+                    }
+                }
+                
+            }
+        } catch (FileUploadException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+         pDao.insert(product);
+   /*     PrintWriter out = response.getWriter();
+        out.write("Done");*/
+         
+         response.sendRedirect("/WebProjectServletJsp/AdminProductController");
     }
 
     /**

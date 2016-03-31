@@ -8,7 +8,9 @@ package HibernateDao;
 import dao.DoaInterface;
 import HibernateEntity.Categories;
 import db.HDBconnect;
+import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -40,7 +42,8 @@ public class HCategoriesDao implements DoaInterface<Categories>{
     public Categories selectById(int id) {
       
         session =HDBconnect.getInstance().getSession();
-//        session.g
+//        Query query =session.createQuery("from  p wher");
+        
     return null ;
     }
 
@@ -50,12 +53,13 @@ public class HCategoriesDao implements DoaInterface<Categories>{
     }
 
     @Override
-    public List<Categories> selectAll() {
+    public ArrayList<Categories> selectAll() {
       
         session =HDBconnect.getInstance().getSession();
+        Query query =session.createQuery("from Categories c");
+        ArrayList<Categories> categoryList = (ArrayList) query.list();
         
-        
-        return null;
+        return categoryList;
     }
     
 }

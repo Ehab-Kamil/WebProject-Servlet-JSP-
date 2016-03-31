@@ -16,7 +16,7 @@
     <div class="account">
         <div class="account-pass">
             <div class="col-md-8 account-top">
-                <form action="//WebProjectServletJsp/AdminAddProduct" method="post" enctype="MULTIPART/FORM-DATA">
+                <form action="/WebProjectServletJsp/AdminAddProductController" method="post" enctype="MULTIPART/FORM-DATA">
                     <div> 	
                         <span>Product Name</span>
                         <input type="text" name="productName" id="productName" required> 
@@ -44,7 +44,7 @@
                     </div>
                     <div> 	
                         <span>Choose File</span>
-                        <input type="file" name="fileName" required>
+<!--                        <input type="file" name="fileName" required>-->
                     </div>
                     <input type="submit" value="Add Product"> 
                 </form>

@@ -5,8 +5,10 @@
  */
 package AdminPackage;
 
+//import HibernateDao.HCategoriesDao;
 import dao.CategoriesDao;
 import entity.Categories;
+//import HibernateEntity.Categories;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;

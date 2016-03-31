@@ -1,5 +1,5 @@
 package HibernateEntity;
-// Generated Mar 30, 2016 6:51:31 PM by Hibernate Tools 4.3.1
+// Generated Mar 31, 2016 9:53:58 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -186,7 +186,7 @@ public class Users  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="users")
-    public Set getPayments() {
+    public Set<Payment> getPayments() {
         return this.payments;
     }
     
@@ -198,7 +198,7 @@ public class Users  implements java.io.Serializable {
     @JoinTable(name="users_interest_categories", catalog="web_project", joinColumns = { 
         @JoinColumn(name="users_idusers", nullable=false, updatable=false) }, inverseJoinColumns = { 
         @JoinColumn(name="categories_idcategory", nullable=false, updatable=false) })
-    public Set getCategorieses() {
+    public Set<Categories> getCategorieses() {
         return this.categorieses;
     }
     
@@ -207,7 +207,7 @@ public class Users  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="users")
-    public Set getCartProducts() {
+    public Set<CartProduct> getCartProducts() {
         return this.cartProducts;
     }
     

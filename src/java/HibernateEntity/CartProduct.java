@@ -1,11 +1,13 @@
 package HibernateEntity;
-// Generated Mar 30, 2016 6:51:31 PM by Hibernate Tools 4.3.1
+// Generated Mar 31, 2016 9:53:58 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,7 +25,7 @@ import javax.persistence.TemporalType;
 public class CartProduct  implements java.io.Serializable {
 
 
-     private int idcartProduct;
+     private Integer idcartProduct;
      private Payment payment;
      private Product product;
      private Users users;
@@ -36,16 +38,14 @@ public class CartProduct  implements java.io.Serializable {
     }
 
 	
-    public CartProduct(int idcartProduct, Payment payment, Product product, Users users, int cartProductMount, Date cartProductDate) {
-        this.idcartProduct = idcartProduct;
+    public CartProduct(Payment payment, Product product, Users users, int cartProductMount, Date cartProductDate) {
         this.payment = payment;
         this.product = product;
         this.users = users;
         this.cartProductMount = cartProductMount;
         this.cartProductDate = cartProductDate;
     }
-    public CartProduct(int idcartProduct, Payment payment, Product product, Users users, int cartProductMount, Date cartProductDate, String productColor, String productSize) {
-       this.idcartProduct = idcartProduct;
+    public CartProduct(Payment payment, Product product, Users users, int cartProductMount, Date cartProductDate, String productColor, String productSize) {
        this.payment = payment;
        this.product = product;
        this.users = users;
@@ -55,15 +55,15 @@ public class CartProduct  implements java.io.Serializable {
        this.productSize = productSize;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="idcart_product", unique=true, nullable=false)
-    public int getIdcartProduct() {
+    public Integer getIdcartProduct() {
         return this.idcartProduct;
     }
     
-    public void setIdcartProduct(int idcartProduct) {
+    public void setIdcartProduct(Integer idcartProduct) {
         this.idcartProduct = idcartProduct;
     }
 

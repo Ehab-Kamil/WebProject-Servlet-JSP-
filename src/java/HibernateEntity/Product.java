@@ -1,5 +1,5 @@
 package HibernateEntity;
-// Generated Mar 30, 2016 6:51:31 PM by Hibernate Tools 4.3.1
+// Generated Mar 31, 2016 9:53:58 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -188,7 +188,7 @@ public class Product  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
-    public Set getCartProducts() {
+    public Set<CartProduct> getCartProducts() {
         return this.cartProducts;
     }
     
