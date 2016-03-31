@@ -7,12 +7,12 @@ $('.table-add').click(function () {
   $TABLE.find('table').append($clone);
 });
 
-$('.table-remove').click(function () {
-    if(confirm("all products under this category will be no longer available, remove from list?")===true)
-    {
-  $(this).parents('tr').detach();
-    }
-});
+//$('.table-remove').click(function () {
+//    if(confirm("all products under this category will be no longer available, remove from list?")===true)
+//    {
+//       $(this).parents('tr').detach();
+//    }
+//});
 
 $('.table-remove1').click(function () {
   $(this).parents('tr').detach();

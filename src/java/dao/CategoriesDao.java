@@ -29,9 +29,9 @@ public class CategoriesDao implements DoaInterface<Categories> {
         //cat = (Categories) bean;
         int check = 0;
         try {
-            statement = DBconnect.getInstance().getconn().prepareStatement("insert into categories (idcategory, category_name) values(?,?)");
-            statement.setInt(1, bean.getIdcategory());
-            statement.setString(2, bean.getCategoryName());
+            statement = DBconnect.getInstance().getconn().prepareStatement("insert into categories (category_name) values(?)");
+            //statement.setInt(1, bean.getIdcategory());
+            statement.setString(1, bean.getCategoryName());
             check = statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CategoriesDao.class.getName()).log(Level.SEVERE, null, ex);
