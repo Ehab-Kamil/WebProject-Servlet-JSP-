@@ -42,6 +42,9 @@
                                 <td>
                                     <c:out value="${cat.categoryName}"/>
                                 </td>
+                                <td>
+                                    <a href="/WebProjectServletJsp/AdminEditProductController?pid=${Product.idproduct}" class="btn btn-primary">Edit</a>
+                                </td>
                             </tr>     
                         </c:forEach>
                     </c:forEach>
