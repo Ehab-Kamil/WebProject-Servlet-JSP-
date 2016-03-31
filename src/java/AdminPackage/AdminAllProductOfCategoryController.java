@@ -5,8 +5,11 @@
  */
 package AdminPackage;
 
+import dao.ProductDao;
+import entity.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,70 +22,29 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "AdminAllProductOfCategoryController", urlPatterns = {"/AdminAllProductOfCategoryController"})
 public class AdminAllProductOfCategoryController extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdminAllProductOfCategoryController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdminAllProductOfCategoryController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //String catID = request.getParameter("id");
+       // int id = Integer.parseInt(catID);
+        ProductDao pd = new ProductDao();
+        //ArrayList<Product> arPro = pd.selectProductsByCategoryId(id);
+        Product pro1 = pd.selectById(1);
+        Product pro2 = pd.selectById(2);
+        Product pro3 = pd.selectById(3);
+        Product pro4 = pd.selectById(4);
+        ArrayList<Product> arPro = new ArrayList();
+        arPro.add(pro1);
+        arPro.add(pro2);
+        arPro.add(pro3);
+        arPro.add(pro4);
+        //request.setAttribute("productList", arPro);
+        request.setAttribute("productList", arPro);
+        RequestDispatcher rd = request.getRequestDispatcher("/Adminpages/AdminShowProducts.jsp");
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
