@@ -37,9 +37,24 @@ public class AdminCategoryController extends HttpServlet {
         String name = request.getParameter("cat_name");
         Categories cat = new Categories();
         CategoriesDao catDao = new CategoriesDao();
+        ArrayList<Categories> cats = new ArrayList();
+        cats = catDao.selectAll();
+        boolean exists=false;
+        for(int i=0; i<cats.size(); i++)
+        {
+            if(cats.get(i).getCategoryName().equalsIgnoreCase(name))
+            {
+                System.out.println("same name");
+                exists = false;
+            }
+            else{
+                exists = true;
+            }
+        }
+        if(exists) {
         cat.setCategoryName(name);
-        catDao.insert(cat);
-        cat.getIdcategory();
+        catDao.insert(cat); 
+        }
         response.sendRedirect("AdminCategoryController");
     }
 }
