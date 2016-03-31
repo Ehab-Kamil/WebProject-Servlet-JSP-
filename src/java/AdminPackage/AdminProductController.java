@@ -67,8 +67,6 @@ public class AdminProductController extends HttpServlet {
          request.setAttribute("categories", cList);
          RequestDispatcher rd = request.getRequestDispatcher("/AdminPages/AdminShowProducts.jsp");
          rd.forward(request, response);
-
-    
     }
 
     /**
