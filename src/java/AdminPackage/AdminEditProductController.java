@@ -5,8 +5,10 @@
  */
 package AdminPackage;
 
+import HibernateDao.HProductDao;
 import dao.ProductDao;
-import entity.Product;
+//import entity.Product;
+import HibernateEntity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -63,12 +65,14 @@ public class AdminEditProductController extends HttpServlet {
             throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("pid"));
-        ProductDao pDao = new ProductDao();
+//        ProductDao pDao = new ProductDao();
+//        Product product = pDao.selectById(id);
+        HProductDao pDao = new HProductDao();
         Product product = pDao.selectById(id);
         request.setAttribute("product", product);
         RequestDispatcher rd = request.getRequestDispatcher("/AdminPages/AdminEditProduct.jsp");
         rd.forward(request, response);
-        
+
     }
 
     /**
@@ -82,7 +86,18 @@ public class AdminEditProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        HProductDao pDao = new HProductDao();
+        Product product = pDao.selectById(Integer.parseInt(request.getParameter("hiddenID")));
+
+//        product.setIdproduct(Integer.parseInt(request.getParameter("hiddenID")));
+        product.setProductName(request.getParameter("productName"));
+        product.setProductDescription(request.getParameter("productDesc"));
+        product.setProductPrice(Float.parseFloat(request.getParameter("productPrice")));
+        product.setProductQuntityavailable(Integer.parseInt(request.getParameter("productQuantityAvailable")));
+
+        pDao.update(product);
+        response.sendRedirect("AdminProductController");
     }
 
     /**
