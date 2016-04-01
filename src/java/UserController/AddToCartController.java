@@ -43,7 +43,7 @@ public class AddToCartController extends HttpServlet {
         } else {
             CartProduct cartProduct = new CartProduct();
 
-            //  user=(Users) session.getAttribute("user");            
+     /*       //  user=(Users) session.getAttribute("user");            
             //  cartProduct.setProduct(request.getParameter("idproduct"));            
             Product p = new Product();
             ProductDao productDao = new ProductDao();
@@ -66,6 +66,7 @@ public class AddToCartController extends HttpServlet {
                 response.sendRedirect("IndexController");
             }
             // request.setAttribute("cartProduct", cpd.selectByUser(user));
+             */
         }
     }
 
