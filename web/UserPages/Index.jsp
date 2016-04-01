@@ -3,8 +3,6 @@
     Created on : Mar 29, 2016, 9:42:33 PM
     Author     : Ehab
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page session="false" contentType="text/html" pageEncoding="UTF-8"%>  
 <jsp:include page="UserHeader.jsp"></jsp:include>
        <%-- <jsp:useBean id="categoryList" class="entity.Categories" scope="request"/> Get The List categories --%>
         <!--header-->
