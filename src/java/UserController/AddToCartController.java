@@ -5,6 +5,12 @@
  */
 package UserController;
 
+import dao.CartProductDao;
+import dao.ProductDao;
+import dao.UsersDao;
+import entity.CartProduct;
+import entity.Product;
+import entity.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,66 +27,48 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AddToCartController", urlPatterns = {"/AddToCartController"})
 public class AddToCartController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddToCartController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddToCartController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        HttpSession session = request.getSession(false);
+        Users user = (Users) session.getAttribute("user");
+        if (user == null) {
+            response.sendRedirect("UserPages/Login.jsp");
+        } else {
+            CartProduct cartProduct = new CartProduct();
+
+            //  user=(Users) session.getAttribute("user");            
+            //  cartProduct.setProduct(request.getParameter("idproduct"));            
+            Product p = new Product();
+            ProductDao productDao = new ProductDao();
+            p = productDao.selectById(Integer.parseInt(request.getParameter("idproduct")));
+            cartProduct.setProduct(p);
+            cartProduct.setCartProductMount(Integer.parseInt(request.getParameter("productMount")));
+            cartProduct.setUsersIdusers(user);
+            cartProduct.setProductColor(request.getParameter("productColor"));
+            cartProduct.setProductsize(request.getParameter("productSize"));
+            int insert = cpd.insert(cartProduct);
+            if (insert == 0) {
+                response.sendRedirect("IndexController");
+                System.out.println("error in insert cartproduct");
+            } else {
+                UsersDao usersDao = new UsersDao();
+                user = usersDao.selectById(user.getIdusers());
+//                HttpSession session = request.getSession(true);
+                session.setAttribute("user", user);
+
+                response.sendRedirect("IndexController");
+            }
+            // request.setAttribute("cartProduct", cpd.selectByUser(user));
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

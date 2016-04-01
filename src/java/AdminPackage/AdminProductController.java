@@ -65,12 +65,9 @@ public class AdminProductController extends HttpServlet {
     
          CategoriesDao cDao = new CategoriesDao();
          ArrayList<Categories> cList = cDao.selectAll();
-         
          request.setAttribute("categories", cList);
          RequestDispatcher rd = request.getRequestDispatcher("/AdminPages/AdminShowProducts.jsp");
          rd.forward(request, response);
-
-    
     }
 
     /**

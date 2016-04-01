@@ -31,7 +31,8 @@
                     </tr>
 
                     <c:forEach items="${requestScope.categories}" var="cat">
-                        <c:forEach items="${cat.productCollection}" var="Product">
+                        <%--<c:forEach items="${cat.productCollection}" var="Product">--%>
+                            <c:forEach items="${cat.products}" var="Product">
                             <tr><td contenteditable="true"><c:out value="${Product.idproduct}"/></td>
                                 <td>
                                     <c:out value="${Product.productName}"/>

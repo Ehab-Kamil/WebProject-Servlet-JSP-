@@ -12,6 +12,24 @@
         <servlet-name>AdminProductController</servlet-name>
         <servlet-class>AdminPackage.AdminProductController</servlet-class>
     </servlet>
+    <!--Aya Mahmoud/Adding servlets configuration-->
+    <servlet>
+        <servlet-name>AdminCategoryController</servlet-name>
+        <servlet-class>AdminPackage.AdminCategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAllProductOfCategoryController</servlet-name>
+        <servlet-class>AdminPackage.AdminAllProductOfCategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SingleProductController</servlet-name>
+        <servlet-class>UserController.SingleProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteCategoryController</servlet-name>
+        <servlet-class>AdminPackage.AdminDeleteCategoryController</servlet-class>
+    </servlet>
+    <!--Aya Mahmoud/Adding servlets configuration-->
     <servlet-mapping>
         <servlet-name>AdminIndexController</servlet-name>
         <url-pattern>/AdminIndexController</url-pattern>
@@ -24,6 +42,24 @@
         <servlet-name>AdminProductController</servlet-name>
         <url-pattern>/AdminProductController</url-pattern>
     </servlet-mapping>
+    <!--Aya Mahmoud/Adding servlets mapping configuration-->
+    <servlet-mapping>
+        <servlet-name>AdminCategoryController</servlet-name>
+        <url-pattern>/AdminCategoryController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAllProductOfCategoryController</servlet-name>
+        <url-pattern>/AdminAllProductOfCategoryController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SingleProductController</servlet-name>
+        <url-pattern>/SingleProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteCategoryController</servlet-name>
+        <url-pattern>/AdminDeleteCategoryController</url-pattern>
+    </servlet-mapping>
+    <!--Aya Mahmoud/Adding servlets mapping configuration-->
     <session-config>
         <session-timeout>
             30

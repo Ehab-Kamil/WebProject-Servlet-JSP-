@@ -76,15 +76,15 @@
             <div class="container">
                 <div class="head-top">
                     <div class="logo">
-                        <h1><a href="index.jsp">Music Store</a></h1>
+                        <h1><a href="/WebProjectServletJsp/AdminIndexController">Music Store</a></h1>
                     </div>
                     <div class=" h_menu4">
                         <ul class="memenu skyblue">
                            
                              
-                             <li><a href="/WebProject/AdminAllCategoriesController" id="color4"><span>Show All Categories</span></a></li>
+                             <li><a href="/WebProjectServletJsp/AdminCategoryController" id="color4"><span>Show All Categories</span></a></li>
                              <li><a href="/WebProjectServletJsp/AdminProductController" id="color4"><span>Show All Products</span></a></li>
-                             <li><a href="/WebProject/AdminAllUsersController" id="color4"><span>Show All User</span></a></li>
+                             <li><a href="/WebProjectServletJsp/AdminUserController" id="color4"><span>Show All User</span></a></li>
                         </ul> 
                     </div>
                     <div class="clearfix"> </div>
