@@ -5,7 +5,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page session="false" contentType="text/html" pageEncoding="UTF-8"%> --> 
-<%--<jsp:include page="header.jsp"></jsp:include>--%>
+<jsp:include page="UserHeader.jsp"></jsp:include>
        <%-- <jsp:useBean id="categoryList" class="entity.Categories" scope="request"/> Get The List categories --%>
         <!--header-->
        
@@ -185,5 +185,5 @@
             </c:forEach> 
             <!---->
         </div>
-        <%--<jsp:include page="footer.jsp"></jsp:include>--%>
+        <jsp:include page="UserFooter.jsp"></jsp:include>
     
