@@ -3,12 +3,12 @@
 <html>
     <head>
         <title>Musican Shop</title>
-        <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/WebProjectServletJsp/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="../js/jquery.min.js"></script>
+        <script src="/WebProjectServletJsp/js/jquery.min.js"></script>
         <!-- Custom Theme files -->
         <!--theme-style-->
-        <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/WebProjectServletJsp/css/style.css" rel="stylesheet" type="text/css" media="all" />
         <!--//theme-style-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,15 +19,15 @@
         <link href='//fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'><!--//fonts-->
         <!-- start menu -->
-        <link href="../css/memenu.css" rel="stylesheet" type="text/css" media="all" />
-        <script type="text/javascript" src="../js/memenu.js"></script>
+        <link href="/WebProjectServletJsp/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+        <script type="text/javascript" src="/WebProjectServletJsp/js/memenu.js"></script>
         <script>$(document).ready(function () {
                 $(".memenu").memenu();
             });</script>
         <!--pop-up-->
-        <script src="../js/menu_jquery.js"></script>
+        <script src="/WebProjectServletJsp/js/menu_jquery.js"></script>
         <!--//pop-up-->	
-        <script src="../js/simpleCart.min.js"></script>
+        <script src="/WebProjectServletJsp/js/simpleCart.min.js"></script>
     </head>
     <body>
         <%--<jsp:useBean id="user" class="entity.Users" scope="session"/>--%>               
@@ -57,8 +57,8 @@
                         </div>
 
                         <!-- search-scripts -->
-                        <script src="../js/classie.js"></script>
-                        <script src="../js/uisearch.js"></script>
+                        <script src="/WebProjectServletJsp/js/classie.js"></script>
+                        <script src="/WebProjectServletJsp/js/uisearch.js"></script>
                         <script>
             new UISearch(document.getElementById('sb-search'));
                         </script>
@@ -68,7 +68,7 @@
                                 <a href="Cart.jsp">
                                     <h3> <div class="total">
                                             <span class="simpleCart_total"></span> </div>
-                                        <img src="../images/cart.png" alt=""/></h3>
+                                        <img src="/WebProjectServletJsp/images/cart.png" alt=""/></h3>
                                 </a>
                                 <p><a href="DeleteCartController?idcartProduct=-1" class="simpleCart_empty">Empty Cart</a></p>
                             </div>
