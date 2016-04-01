@@ -7,13 +7,20 @@ package HibernateDao;
 
 import HibernateEntity.Product;
 import dao.DoaInterface;
+import db.HDBconnect;
+import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 /**
  *
  * @author Ehab
  */
-public class HProductDao implements DoaInterface<Product>{
+public class HProductDao implements DoaInterface<Product> {
+
+    Session session;
+    Product product;
 
     @Override
     public int insert(Product bean) {
@@ -37,12 +44,21 @@ public class HProductDao implements DoaInterface<Product>{
 
     @Override
     public Product selectByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        session = HDBconnect.getInstance().getSession();
+        Query query = session.createQuery("from Product p where p.productName=:name");
+        query.setParameter("name", name);
+        product = (Product) query.uniqueResult();
+        return product;
     }
 
     @Override
     public List<Product> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        session = HDBconnect.getInstance().getSession();
+        Query query = session.createQuery("from Product p");
+        ArrayList<Product> productList = (ArrayList) query.list();
+        return productList;
     }
-    
+
 }

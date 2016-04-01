@@ -1,8 +1,9 @@
+<jsp:include page="AdminHeader.jsp"></jsp:include>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-  <head>
+<html>  
+<head>
     <meta charset="UTF-8">
     <title>Categories</title>
     <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
@@ -65,5 +66,7 @@
     <script src='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js'></script>
     <script src="js/allCategories.js"></script>
+  <br>
   </body>
 </html>
+<jsp:include page="AdminFooter.jsp"></jsp:include>
