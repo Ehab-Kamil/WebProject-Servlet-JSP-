@@ -45,7 +45,7 @@ public class HProductDao implements DoaInterface<Product> {
         session = HDBconnect.getInstance().getSession();
         try {
             session.beginTransaction();
-            session.persist(bean);
+            session.update(bean);
             session.getTransaction().commit();
             flag = 1;
         } catch (Exception e) {
