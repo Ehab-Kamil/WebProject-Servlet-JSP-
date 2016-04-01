@@ -24,7 +24,18 @@ public class HProductDao implements DoaInterface<Product> {
 
     @Override
     public int insert(Product bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ////// still have a lots of problem m7adesh ye copy menha heya bayza aslan :D 
+        int flag = 0;
+        session = HDBconnect.getInstance().getSession();
+        try {
+            session.beginTransaction();
+            session.persist(bean);
+            session.getTransaction().commit();
+            flag = 1;
+        } catch (Exception e) {
+            flag = 0;
+        }
+        return flag;
     }
 
     @Override
@@ -39,7 +50,12 @@ public class HProductDao implements DoaInterface<Product> {
 
     @Override
     public Product selectById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        session = HDBconnect.getInstance().getSession();
+        Query query = session.createQuery("from Product p where p.idproduct=:id");
+        query.setParameter("id", id);
+        product = (Product) query.uniqueResult();
+        return product;
     }
 
     @Override
