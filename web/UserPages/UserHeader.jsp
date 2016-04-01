@@ -121,32 +121,32 @@
                             <c:if test="${empty sessionScope.user}">
                                 <li><a class="color4" href="Login.jsp">Login</a></li>
                                 <li>
-                                <a href="#" id="color4"><span>Login</span></a>
-                                <div id="loginContainer" class="mepanel"><a href="#" id="loginButton"><span>Login</span></a>
-                                    <div id="loginBox">                
-                                        <form id="loginForm" action="LoginController" method="post">
-                                            <fieldset id="body">
-                                                <fieldset>
-                                                    <span>Email Address</span>
-                                                    <input type="text" name="userEmail" id="userEmail">
+                                    <a href="#" id="color4"><span>Login</span></a>
+                                    <div id="loginContainer" class="mepanel"><a href="#" id="loginButton"><span>Login</span></a>
+                                        <div id="loginBox">                
+                                            <form id="loginForm" action="LoginController" method="post">
+                                                <fieldset id="body">
+                                                    <fieldset>
+                                                        <span>Email Address</span>
+                                                        <input type="text" name="userEmail" id="userEmail">
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <span>Password</span>
+                                                        <input type="password" name="userPassword" id="userPassword" required>
+                                                    </fieldset>
+                                                    <input type="submit" id="login" value="Sign in">
+                                                    <label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
                                                 </fieldset>
-                                                <fieldset>
-                                                    <span>Password</span>
-                                                    <input type="password" name="userPassword" id="userPassword" required>
-                                                </fieldset>
-                                                <input type="submit" id="login" value="Sign in">
-                                                <label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
-                                            </fieldset>
-                                            <span><a href="#">Forgot your password?</a></span>
-                                        </form>
+                                                <span><a href="#">Forgot your password?</a></span>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li><a class="color6" href="Signup.jsp">Signup</a></li>
+                                </li>
+                                <li><a class="color6" href="Signup.jsp">Signup</a></li>
                                 </c:if>       
-                            
+
                             <li><a class="color6" href="contact.jsp">Contact</a></li>
-                            
+
                         </ul> 
                     </div>
                     <div class="clearfix"> </div>
