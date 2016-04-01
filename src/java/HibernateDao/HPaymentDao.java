@@ -27,7 +27,12 @@ public class HPaymentDao implements DoaInterface<Payment> {
 
     @Override
     public int insert(Payment bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        session = HDBconnect.getInstance().getSession();
+        session.beginTransaction();
+        session.persist(bean);
+        session.getTransaction().commit();
+        return 1;
     }
 
     @Override
