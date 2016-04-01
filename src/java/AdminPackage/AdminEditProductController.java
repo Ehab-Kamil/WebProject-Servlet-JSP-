@@ -87,10 +87,10 @@ public class AdminEditProductController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ProductDao pDao = new ProductDao();
-        entity.Product product = new entity.Product();
+        HProductDao pDao = new HProductDao();
+        Product product = pDao.selectById(Integer.parseInt(request.getParameter("hiddenID")));
 
-        product.setIdproduct(Integer.parseInt(request.getParameter("hiddenID")));
+//        product.setIdproduct(Integer.parseInt(request.getParameter("hiddenID")));
         product.setProductName(request.getParameter("productName"));
         product.setProductDescription(request.getParameter("productDesc"));
         product.setProductPrice(Float.parseFloat(request.getParameter("productPrice")));
