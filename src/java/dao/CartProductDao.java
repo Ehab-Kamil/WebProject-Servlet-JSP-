@@ -33,9 +33,10 @@ public class CartProductDao implements DoaInterface<CartProduct> {
     public int insert(CartProduct bean) {
         int check = 0;
         try {
-
             statment = DBconnect.getInstance().getconn().prepareStatement("insert into cart_product"
-                    + "(cart_product_mount,cart_product_date,product_idproduct,users_idusers,product_color,product_size)"
+                    + "(cart_product_mount,cart_product_date,"
+                    + "product_idproduct,users_idusers,"
+                    + "product_color,product_size)"
                     + " values (?,?,?,?,?,?)");
             statment.setInt(1, bean.getCartProductMount());
             statment.setDate(2, Date.valueOf(LocalDate.now()));
@@ -45,7 +46,6 @@ public class CartProductDao implements DoaInterface<CartProduct> {
             statment.setString(6, bean.getProductsize());
             check = statment.executeUpdate();
            System.out.println("insert" + check);
-
         } catch (SQLException ex) {
             Logger.getLogger(UsersDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -92,7 +92,7 @@ public class CartProductDao implements DoaInterface<CartProduct> {
     public int deleteAll(int idUser) {
         int check = 0;
         try {
-            statment = DBconnect.getInstance().getconn().prepareStatement("delete from cart_peoduct where users_idusers=?");
+            statment = DBconnect.getInstance().getconn().prepareStatement("delete from cart_product where users_idusers=?");
             statment.setInt(1, idUser);
             check = statment.executeUpdate();
         } catch (SQLException ex) {
@@ -199,7 +199,7 @@ public class CartProductDao implements DoaInterface<CartProduct> {
         DoaInterface doaInterface;
         try {
             statment = DBconnect.getInstance().getconn().prepareStatement("select * from cart_product"
-                    + " where users_idusers=? and payment_idpayment=0");
+                    + " where users_idusers=? and payment_idpayment is NULL");
             statment.setInt(1, user.getIdusers());
             ResultSet result = statment.executeQuery();
             while (result.next()) {
