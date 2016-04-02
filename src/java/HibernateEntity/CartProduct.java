@@ -31,8 +31,7 @@ public class CartProduct  implements java.io.Serializable {
      private Users users;
      private int cartProductMount;
      private Date cartProductDate;
-     private String productColor;
-     private String productSize;
+     
 
     public CartProduct() {
     }
@@ -51,8 +50,6 @@ public class CartProduct  implements java.io.Serializable {
        this.users = users;
        this.cartProductMount = cartProductMount;
        this.cartProductDate = cartProductDate;
-       this.productColor = productColor;
-       this.productSize = productSize;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -68,7 +65,7 @@ public class CartProduct  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="payment_idpayment", nullable=false)
+    @JoinColumn(name="payment_idpayment", nullable=true)
     public Payment getPayment() {
         return this.payment;
     }
@@ -118,24 +115,7 @@ public class CartProduct  implements java.io.Serializable {
     }
 
     
-    @Column(name="product_color", length=45)
-    public String getProductColor() {
-        return this.productColor;
-    }
-    
-    public void setProductColor(String productColor) {
-        this.productColor = productColor;
-    }
 
-    
-    @Column(name="product_size", length=45)
-    public String getProductSize() {
-        return this.productSize;
-    }
-    
-    public void setProductSize(String productSize) {
-        this.productSize = productSize;
-    }
 
 
 
