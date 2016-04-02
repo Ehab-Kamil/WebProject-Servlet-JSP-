@@ -166,7 +166,7 @@
                             <div class="col-md-3 grid-top">
                                 <a href="/WebProjectServletJsp/SingleProductController?id=${product.idproduct}" class="b-link-stripe b-animate-go  thickbox">
                                     <!--<img class="img-responsive" src="/WebProjectServletJsp/${product.productImg}" alt="/WebProjectServletJsp/${product.productImg}">-->
-                                    <img class="img-responsive" src="/WebProjectServletJsp/productImage?imageName=${product.getProductImg()}" alt="">
+                                    <img class="img-responsive" src="/WebProjectServletJsp/productImage?imageName=${product.getProductImg()}&width=285&height=290" alt="">
                                     <div class="b-wrapper">
                                         <h3 class="b-animate b-from-left    b-delay03 ">
                                             <span><c:out value="${product.productName}"/></span>

@@ -47,8 +47,10 @@ public class ProductImage extends HttpServlet {
 //-----------------------------------------------------------------------------------------------
         response.setContentType("image/jpeg");
         String imageName = request.getParameter("imageName");
-        int thumbWidth = 285;
-        int thumbHeight = 290;
+        String imageWidth = request.getParameter("width");
+        String imageHeight = request.getParameter("height");
+        int thumbWidth = Integer.parseInt(imageWidth);
+        int thumbHeight = Integer.parseInt(imageHeight);
 //        String pathToWeb = "C:/Book_Shop/images/";//getServletContext().getRealPath("/");
         File f = new File(Product.uplodedImgFolderDestntion + "/" + imageName);
         System.out.println(f.getAbsolutePath());
