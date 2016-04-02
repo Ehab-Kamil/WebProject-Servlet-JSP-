@@ -12,6 +12,7 @@
         <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'>
         <link rel="stylesheet" href="/WebProjectServletJsp/css/allCategories.css">
         <link rel="stylesheet" href="/WebProjectServletJsp/css/style.css">
+  
     </head>
     <body>
 
@@ -31,7 +32,7 @@
                         <c:forEach items="${requestScope.productList}" var="product">
                             <div class="col-md-6 bottom-cd simpleCart_shelfItem">
                                 <div class="product-at ">
-                                    <a href="single.html"><img class="img-responsive" src="images/t3.jpg" alt="">
+                                    <a href="single.html"><img class="img-responsive one" src="/WebProjectServletJsp/productImage?imageName=${product.getProductImg()}&width=800&height=600" style="border:3px solid #8CE78A" alt="">
                                         <div class="pro-grid">
                                             <span class="buy-in">Buy Now</span>
                                         </div>

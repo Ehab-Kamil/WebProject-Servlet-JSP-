@@ -76,7 +76,7 @@ public class searchController extends HttpServlet {
             System.out.println("dis : " + product.getProductPrice());
             
         }
-
+//#8CE78A
         //request.getServletContext().setAttribute("productList", productList);
         request.setAttribute("productList", productList);
         RequestDispatcher rd = request.getRequestDispatcher("/UserPages/products.jsp");
