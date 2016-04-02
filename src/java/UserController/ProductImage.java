@@ -21,6 +21,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.imgscalr.Scalr;
+import static org.imgscalr.Scalr.OP_ANTIALIAS;
 
 /**
  *
@@ -54,18 +56,16 @@ public class ProductImage extends HttpServlet {
 //        String pathToWeb = "C:/Book_Shop/images/";//getServletContext().getRealPath("/");
         File f = new File(Product.uplodedImgFolderDestntion + "/" + imageName);
         System.out.println(f.getAbsolutePath());
-        Image image = ImageIO.read(f);
+        BufferedImage image = ImageIO.read(f);
 
-        BufferedImage thumb = new BufferedImage(thumbWidth, thumbHeight, BufferedImage.TYPE_INT_RGB);
-        Graphics2D graphics2D = thumb.createGraphics();
+        BufferedImage thumb = new BufferedImage(thumbWidth, thumbHeight, BufferedImage.TYPE_INT_RGB);Graphics2D graphics2D = thumb.createGraphics();
         graphics2D.setBackground(Color.WHITE);
         graphics2D.setPaint(Color.WHITE);
         graphics2D.fillRect(0, 0, thumbWidth, thumbHeight);
         graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         graphics2D.drawImage(image, 0, 0, thumbWidth, thumbHeight, null);
-
         OutputStream out = response.getOutputStream();
-        ImageIO.write(thumb, "jpg", out);
+        ImageIO.write(thumb    , "jpg", out);
         out.close();
     }
 

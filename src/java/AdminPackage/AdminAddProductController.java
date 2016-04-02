@@ -5,8 +5,9 @@
  */
 package AdminPackage;
 
-import dao.ProductDao;
-import entity.Product;
+import HibernateEntity.Categories;
+import HibernateDao.HProductDao;
+import HibernateEntity.Product;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,7 +47,7 @@ public class AdminAddProductController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AdminAddProductController</title>");            
+            out.println("<title>Servlet AdminAddProductController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AdminAddProductController at " + request.getContextPath() + "</h1>");
@@ -81,18 +82,19 @@ public class AdminAddProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-        ProductDao pDao = new ProductDao();
+
+        HProductDao pDao = new HProductDao();
         Product product = new Product();
-         try {
+        Categories c = new Categories();
+        try {
             DiskFileItemFactory factory = new DiskFileItemFactory();
             ServletFileUpload upload = new ServletFileUpload(factory);
             List<FileItem> items = upload.parseRequest(request);
             Iterator<FileItem> iter = items.iterator();
             while (iter.hasNext()) {
-                
+
                 FileItem item = iter.next();
-                
+
                 if (item.isFormField()) {
                     String name = item.getFieldName();
                     String value = item.getString();
@@ -113,29 +115,28 @@ public class AdminAddProductController extends HttpServlet {
                             product.setProductQuntitysold(Integer.parseInt(value));
                             break;
                         case "productCategory":
-                            product.setCategoriesIdcategory(Integer.parseInt(value));
+                            c.setIdcategory(Integer.parseInt(value));
+                            product.setCategories(c);
                             break;
                     }
                 } else {
                     if (!item.isFormField()) {
-          //              item.write(new File(getClass().getClassLoader().getResource("WebProject/images/")+item.getName()));
-            //           item.write(new File(request.getContextPath()+"/web/images/" + item.getName()));
-                        item.write(new File("H:\\ITI\\WebTechnology\\WebProject\\WebProject\\web\\images\\" + item.getName()));
-                        product.setProductImg("H:\\ITI\\WebTechnology\\WebProject\\WebProject\\web\\images\\" + item.getName());
+                        item.write(new File("C:/images/" + item.getName()));
+                        product.setProductImg(item.getName());
                     }
                 }
-                
+
             }
         } catch (FileUploadException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-         pDao.insert(product);
-   /*     PrintWriter out = response.getWriter();
-        out.write("Done");*/
-         
-         response.sendRedirect("/WebProjectServletJsp/AdminProductController");
+        pDao.insert(product);
+        /*     PrintWriter out = response.getWriter();
+         out.write("Done");*/
+
+        response.sendRedirect("/WebProjectServletJsp/AdminProductController");
     }
 
     /**
