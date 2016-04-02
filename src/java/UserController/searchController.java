@@ -67,7 +67,7 @@ public class searchController extends HttpServlet {
         System.out.println("------>>> " + key);
         HProductDao productDao = new HProductDao();
         List<Product> productList = productDao.search(key);
-
+        if (productList.size()> 0){
         for (Product product : productList) {
             System.out.println("------------<<>>--------------");
             System.out.println("id : " + product.getIdproduct());
@@ -79,8 +79,14 @@ public class searchController extends HttpServlet {
 //#8CE78A
         //request.getServletContext().setAttribute("productList", productList);
         request.setAttribute("productList", productList);
+        }
+        else 
+        {
+            
+        }
         RequestDispatcher rd = request.getRequestDispatcher("/UserPages/products.jsp");
         rd.forward(request, response);
+        
 //        HttpSession session = request.getSession(true);
 //        session.setAttribute("productList", productList);
 //        RequestDispatcher rd3 = request.getRequestDispatcher("/UserPages/products.jsp");
