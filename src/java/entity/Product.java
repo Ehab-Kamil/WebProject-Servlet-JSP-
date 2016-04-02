@@ -42,6 +42,8 @@ public class Product implements Serializable {
     private Categories categories;
 
     private List<CartProduct> cartProductCollection;
+    
+    static public final String uplodedImgFolderDestntion = "C:/images/";
 
     public Product() {
     }

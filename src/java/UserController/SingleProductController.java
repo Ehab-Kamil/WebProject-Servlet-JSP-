@@ -5,9 +5,11 @@
  */
 package UserController;
 
-import dao.ProductDao;
-import entity.Product;
+import HibernateDao.HProductDao;
+//import dao.ProductDao;
+//import entity.Product;
 //import entity.ProductPK;
+import HibernateEntity.Product;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -25,17 +27,19 @@ public class SingleProductController extends HttpServlet{
 
     Product product;
     RequestDispatcher rd;
-    ProductDao pd;
+    HProductDao pd;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        
         //String str = req.getParameter("edit");//addedby Ehab
         String idpro = req.getParameter("id");
-        System.out.println("id for product: " + idpro);
+//        System.out.println("id for product: " + idpro);
         //int id = Integer.parseInt(idpro);
-        pd = new ProductDao();
-        Product prod = pd.selectById(1);
+//        pd = new ProductDao();
+       pd=new HProductDao();
+       
+        Product prod = pd.selectById(Integer.parseInt(idpro));
         req.setAttribute("product", prod);
         
         //if(str==null){

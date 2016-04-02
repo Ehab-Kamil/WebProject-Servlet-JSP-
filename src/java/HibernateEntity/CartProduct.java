@@ -1,6 +1,7 @@
 package HibernateEntity;
 // Generated Mar 31, 2016 9:53:58 AM by Hibernate Tools 4.3.1
 
+
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,12 +23,14 @@ import javax.persistence.TemporalType;
 )
 public class CartProduct implements java.io.Serializable {
 
-    private Integer idcartProduct;
-    private Payment payment;
-    private Product product;
-    private Users users;
-    private int cartProductMount;
-    private Date cartProductDate;
+
+     private Integer idcartProduct;
+     private Payment payment;
+     private Product product;
+     private Users users;
+     private int cartProductMount;
+     private Date cartProductDate;
+     
 
     public CartProduct() {
     }
@@ -52,8 +55,8 @@ public class CartProduct implements java.io.Serializable {
         this.idcartProduct = idcartProduct;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_idpayment", nullable = false)
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="payment_idpayment", nullable=true)
     public Payment getPayment() {
         return this.payment;
     }
