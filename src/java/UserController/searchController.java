@@ -5,27 +5,24 @@
  */
 package UserController;
 
-import HibernateDao.HCategoriesDao;
-import dao.CategoriesDao;
-//import entity.Categories;
-import HibernateEntity.Categories;
-import entity.Product;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import HibernateDao.HProductDao;
+import HibernateEntity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ehab
+ * @author Amira Anis
  */
-public class IndexController extends HttpServlet {
+public class searchController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +41,10 @@ public class IndexController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet IndexController</title>");
+            out.println("<title>Servlet searchController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet IndexController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet searchController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,16 +62,29 @@ public class IndexController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       // processRequest(request, response);
+        String key = request.getParameter("search");
+        System.out.println("------>>> " + key);
+        HProductDao productDao = new HProductDao();
+        List<Product> productList = productDao.search(key);
 
-//        CategoriesDao cDao = new CategoriesDao();
-//        ArrayList<Categories> cList = cDao.selectAll();
-     
-        HCategoriesDao cDao = new HCategoriesDao();
-        ArrayList<Categories> cList = cDao.selectAll();
-        
-        request.getServletContext().setAttribute("categoryList", cList);
-
-        response.sendRedirect("UserPages/Index.jsp");
+        for (Product product : productList) {
+            System.out.println("------------<<>>--------------");
+            System.out.println("id : " + product.getIdproduct());
+            System.out.println("name : " + product.getProductName());
+            System.out.println("dis : " + product.getProductDescription());
+            System.out.println("dis : " + product.getProductPrice());
+            
+        }
+//#8CE78A
+        //request.getServletContext().setAttribute("productList", productList);
+        request.setAttribute("productList", productList);
+        RequestDispatcher rd = request.getRequestDispatcher("/UserPages/products.jsp");
+        rd.forward(request, response);
+//        HttpSession session = request.getSession(true);
+//        session.setAttribute("productList", productList);
+//        RequestDispatcher rd3 = request.getRequestDispatcher("/UserPages/products.jsp");
+//        rd3.forward(request, response);
     }
 
     /**
@@ -88,7 +98,7 @@ public class IndexController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 
     /**
