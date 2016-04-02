@@ -48,7 +48,7 @@
 
                         <div class="search-box">
                             <div id="sb-search" class="sb-search">
-                                <form method="get" action="SearchController">
+                                <form method="get" action="/WebProjectServletJsp/searchController">
                                     <input class="sb-search-input" placeholder="Enter your search term..." type="search"  name="search">
                                     <input class="sb-search-submit" type="submit" value="search"  name="action" >
                                     <span class="sb-icon-search"> </span>

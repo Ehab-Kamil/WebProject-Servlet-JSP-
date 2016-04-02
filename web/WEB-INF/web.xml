@@ -30,6 +30,10 @@
         <servlet-class>AdminPackage.AdminDeleteCategoryController</servlet-class>
     </servlet>
     <!--Aya Mahmoud/Adding servlets configuration-->
+    <servlet>
+        <servlet-name>searchController</servlet-name>
+        <servlet-class>UserController.searchController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminIndexController</servlet-name>
         <url-pattern>/AdminIndexController</url-pattern>
@@ -60,6 +64,10 @@
         <url-pattern>/AdminDeleteCategoryController</url-pattern>
     </servlet-mapping>
     <!--Aya Mahmoud/Adding servlets mapping configuration-->
+    <servlet-mapping>
+        <servlet-name>searchController</servlet-name>
+        <url-pattern>/searchController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
