@@ -120,8 +120,8 @@ public class AdminAddProductController extends HttpServlet {
                     if (!item.isFormField()) {
           //              item.write(new File(getClass().getClassLoader().getResource("WebProject/images/")+item.getName()));
             //           item.write(new File(request.getContextPath()+"/web/images/" + item.getName()));
-                        item.write(new File("H:\\ITI\\WebTechnology\\WebProject\\WebProject\\web\\images\\" + item.getName()));
-                        product.setProductImg("H:\\ITI\\WebTechnology\\WebProject\\WebProject\\web\\images\\" + item.getName());
+                        item.write(new File("C:/images/" + item.getName()));
+                        product.setProductImg("C:/images/" + item.getName());
                     }
                 }
                 
@@ -138,11 +138,6 @@ public class AdminAddProductController extends HttpServlet {
          response.sendRedirect("/WebProjectServletJsp/AdminProductController");
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

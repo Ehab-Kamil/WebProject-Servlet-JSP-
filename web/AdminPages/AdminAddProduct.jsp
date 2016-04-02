@@ -44,7 +44,7 @@
                     </div>
                     <div> 	
                         <span>Choose File</span>
-<!--                        <input type="file" name="fileName" required>-->
+                        <input type="file" name="fileName" required>
                     </div>
                     <input type="submit" value="Add Product"> 
                 </form>

@@ -5,14 +5,11 @@
  */
 package UserController;
 
-import dao.CartProductDao;
-import dao.ProductDao;
-import dao.UsersDao;
-import entity.CartProduct;
-import entity.Product;
-import entity.Users;
+import HibernateDao.HCartProductDao;
+import HibernateDao.HUserDao;
+import HibernateEntity.*;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Ehab
- */
 @WebServlet(name = "AddToCartController", urlPatterns = {"/AddToCartController"})
 public class AddToCartController extends HttpServlet {
 
@@ -42,37 +35,28 @@ public class AddToCartController extends HttpServlet {
             response.sendRedirect("UserPages/Login.jsp");
         } else {
             CartProduct cartProduct = new CartProduct();
-
-     /*       //  user=(Users) session.getAttribute("user");            
-            //  cartProduct.setProduct(request.getParameter("idproduct"));            
-            Product p = new Product();
-            ProductDao productDao = new ProductDao();
-            p = productDao.selectById(Integer.parseInt(request.getParameter("idproduct")));
-            cartProduct.setProduct(p);
+            cartProduct.setCartProductDate(new Date());
             cartProduct.setCartProductMount(Integer.parseInt(request.getParameter("productMount")));
-            cartProduct.setUsersIdusers(user);
-            cartProduct.setProductColor(request.getParameter("productColor"));
-            cartProduct.setProductsize(request.getParameter("productSize"));
-            int insert = cpd.insert(cartProduct);
-            if (insert == 0) {
-                response.sendRedirect("IndexController");
-                System.out.println("error in insert cartproduct");
-            } else {
-                UsersDao usersDao = new UsersDao();
-                user = usersDao.selectById(user.getIdusers());
-//                HttpSession session = request.getSession(true);
-                session.setAttribute("user", user);
+            Product p = new Product();
+            p.setIdproduct(Integer.parseInt(request.getParameter("idProduct")));
+            cartProduct.setProduct(p);
+            /*      cartProduct.setUsers(user);
+             HCartProductDao cartProductDao = new HCartProductDao();
+             int insert = cartProductDao.insert(cartProduct);*/
+            user.addCartProduct(cartProduct);
+            HUserDao userDao=new HUserDao();
+            userDao.update(user);
+            //    session.setAttribute("user", user);
+            //    response.sendRedirect("IndexController");
 
-                response.sendRedirect("IndexController");
-            }
-            // request.setAttribute("cartProduct", cpd.selectByUser(user));
-             */
         }
     }
 
-    @Override
-    public String getServletInfo() {
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
-}
+    }
