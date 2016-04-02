@@ -57,7 +57,17 @@ public class HProductDao implements DoaInterface<Product> {
 
     @Override
     public int delete(Product bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int flag = 0;
+        session = HDBconnect.getInstance().getSession();
+        try {
+            session.beginTransaction();
+            session.delete(bean);
+            session.getTransaction().commit();
+            flag = 1;
+        } catch (Exception e) {
+            flag = 0;
+        }
+        return flag;
     }
 
     @Override
@@ -92,7 +102,7 @@ public class HProductDao implements DoaInterface<Product> {
     public List<Product> search(String keyword) {
 
         session = HDBconnect.getInstance().getSession();
-        
+
         String hql = "from Product p where productName like :keyword";
 //        String keyword = "test";
         Query query = session.createQuery(hql);
