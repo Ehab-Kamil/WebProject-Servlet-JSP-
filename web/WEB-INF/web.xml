@@ -50,6 +50,22 @@
         <servlet-name>AddToCartController</servlet-name>
         <servlet-class>UserController.AddToCartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAddProductController</servlet-name>
+        <servlet-class>AdminPackage.AdminAddProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteUserController</servlet-name>
+        <servlet-class>AdminPackage.AdminDeleteUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminEditProductController</servlet-name>
+        <servlet-class>AdminPackage.AdminEditProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminShowProfileController</servlet-name>
+        <servlet-class>AdminPackage.AdminShowProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminIndexController</servlet-name>
         <url-pattern>/AdminIndexController</url-pattern>
@@ -100,10 +116,24 @@
         <servlet-name>AddToCartController</servlet-name>
         <url-pattern>/AddToCartController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddProductController</servlet-name>
+        <url-pattern>/AdminAddProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteUserController</servlet-name>
+        <url-pattern>/AdminDeleteUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminEditProductController</servlet-name>
+        <url-pattern>/AdminEditProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminShowProfileController</servlet-name>
+        <url-pattern>/AdminShowProfileController</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>IndexController</welcome-file>

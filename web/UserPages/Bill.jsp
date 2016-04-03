@@ -19,10 +19,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html >
-    <head>
-        <meta charset="UTF-8">
-        <title>HTML5 Editable Table</title>
+<jsp:include page="UserHeader.jsp"></jsp:include>
         <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
         <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'>
         <link rel="stylesheet" href="/WebProjectServletJsp/css/allCategories.css">
@@ -107,3 +104,4 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
 
 
+                        <jsp:include page="UserFooter.jsp"></jsp:include>

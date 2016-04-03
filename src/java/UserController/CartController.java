@@ -35,11 +35,6 @@ public class CartController extends HttpServlet {
         } else {
             HCartProductDao hCartProductDao=new HCartProductDao();
             List<CartProduct> cartProducts = hCartProductDao.selectByUser(user);
-            
-            for (CartProduct cartProduct : cartProducts) {
-                System.out.println(cartProduct.getIdcartProduct());
-            }
-
             request.setAttribute("cartProducts", cartProducts);
             RequestDispatcher rd = request.getRequestDispatcher("/UserPages/Cart.jsp");
             rd.forward(request, response);

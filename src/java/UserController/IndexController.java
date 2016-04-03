@@ -73,7 +73,7 @@ public class IndexController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Session session = HDBconnect.getInstance().getSession();
+     /*   Session session = HDBconnect.getInstance().getSession();
        
         session.beginTransaction();
         Users user = (Users) session.get(Users.class, 1);
@@ -82,7 +82,7 @@ public class IndexController extends HttpServlet {
         HttpSession httpSession=request.getSession(true);
         httpSession.setAttribute("user", user);
         System.out.println(user.getIdusers()+"/"+user.getUserEmail());
-        
+        */
         HCategoriesDao cDao = new HCategoriesDao();
         ArrayList<Categories> cList = cDao.selectAll();
         

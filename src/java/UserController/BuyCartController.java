@@ -70,7 +70,7 @@ public class BuyCartController extends HttpServlet {
             user = usersDao.selectById(user.getIdusers());*/
             
             HUserDao usersDao = new HUserDao();
-            usersDao.update(user);
+            usersDao.update2(user);
 
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);

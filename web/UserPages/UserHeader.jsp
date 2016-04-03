@@ -82,7 +82,7 @@
             <div class="container">
                 <div class="head-top">
                     <div class="logo">
-                        <h1><a href="Index.jsp">Musican</a></h1>
+                        <h1><a href="/WebProjectServletJsp/IndexController">Musican</a></h1>
                     </div>
                     <div class=" h_menu4">
                         <ul class="memenu skyblue">
