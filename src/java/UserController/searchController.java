@@ -82,7 +82,13 @@ public class searchController extends HttpServlet {
         }
         else 
         {
+            response.setContentType("text/html;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
             
+            
+            out.println("There is no matching result");
+            
+        }
         }
         RequestDispatcher rd = request.getRequestDispatcher("/UserPages/products.jsp");
         rd.forward(request, response);
