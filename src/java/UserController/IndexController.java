@@ -6,9 +6,12 @@
 package UserController;
 
 import HibernateDao.HCategoriesDao;
+import HibernateDao.HUserDao;
 import dao.CategoriesDao;
 //import entity.Categories;
 import HibernateEntity.Categories;
+import HibernateEntity.Users;
+import db.HDBconnect;
 import entity.Product;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,11 +20,13 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.http.*;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.imgscalr.Scalr;
-import static org.imgscalr.Scalr.OP_ANTIALIAS;
+import org.hibernate.Session;
+//import org.imgscalr.Scalr;
+//import static org.imgscalr.Scalr.OP_ANTIALIAS;
 
 /**
  *
@@ -68,9 +73,13 @@ public class IndexController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        CategoriesDao cDao = new CategoriesDao();
-//        ArrayList<Categories> cList = cDao.selectAll();
-     
+        Session session = HDBconnect.getInstance().getSession();
+        session.beginTransaction();
+        Users user = (Users) session.get(Users.class, 1);
+        HttpSession httpSession=request.getSession(true);
+        httpSession.setAttribute("user", user);
+        System.out.println(user.getIdusers()+"/"+user.getUserEmail());
+        
         HCategoriesDao cDao = new HCategoriesDao();
         ArrayList<Categories> cList = cDao.selectAll();
         
@@ -79,14 +88,6 @@ public class IndexController extends HttpServlet {
         response.sendRedirect("UserPages/Index.jsp");
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

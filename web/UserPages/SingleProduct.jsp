@@ -85,7 +85,7 @@
                         <h5 class="item_price">$ ${requestScope.product.productPrice}</h5>
                         <p>${requestScope.product.productDescription}</p>
                         <div class="available">
-                            <form action="AddToCardController" method="post">
+                            <form action="/WebProjectServletJsp/AddToCartController" method="post">
                             <ul>
                                 <li>Available Quantity: <input type="text" style="border: 0px" size="1" value="${requestScope.product.productQuntityavailable}" readonly>
                                 <div class="clearfix"> </div>

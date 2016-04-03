@@ -175,7 +175,7 @@ public class Users implements java.io.Serializable {
         this.userZip = userZip;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
     public Set<Payment> getPayments() {
         return this.payments;
     }
@@ -184,7 +184,7 @@ public class Users implements java.io.Serializable {
         this.payments = payments;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_interest_categories", catalog = "web_project", joinColumns = {
         @JoinColumn(name = "users_idusers", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "categories_idcategory", nullable = false, updatable = false)})
@@ -196,7 +196,7 @@ public class Users implements java.io.Serializable {
         this.categorieses = categorieses;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
     public Set<CartProduct> getCartProducts() {
         return this.cartProducts;
     }

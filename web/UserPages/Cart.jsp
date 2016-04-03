@@ -36,8 +36,8 @@
                                     <ul class="qty">
                                         <li><p>Last Modification : ${productList.cartProductDate}</p></li>
                                         <li><p><a href="BuyCartController?idcartProduct=${productList.idcartProduct}"><img src="images/buy-32.jpg"></a></p></li>
-                                        <li><p><a href="SingleProductController?id=${productList.product.idproduct}"><img src="images/edit-4-32.jpg"></a></p></li>
-                                        <li><p><a href="DeleteCartController?idcartProduct=${productList.product.idproduct}"><img src="images/delete-32.jpg"></a></p></li>
+                                        <li><p><a href="EditCartController?idcartProduct=${productList.idcartProduct}"><img src="images/edit-4-32.jpg"></a></p></li>
+                                        <li><p><a href="DeleteCartController?idcartProduct=${productList.idcartProduct}"><img src="images/delete-32.jpg"></a></p></li>
                                     </ul>
                                 </div>	
                             </div>

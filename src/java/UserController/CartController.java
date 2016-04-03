@@ -9,6 +9,7 @@ import HibernateEntity.CartProduct;
 import HibernateEntity.Users;
 import java.io.IOException;
 import java.util.Set;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,17 +25,19 @@ public class CartController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         Users user = (Users) session.getAttribute("user");
-      /*  Session session = HDBconnect.getInstance().getSession();
-        Users user = (Users) session.get(Users.class, 1);*/
-        
+        /*  Session session = HDBconnect.getInstance().getSession();
+         Users user = (Users) session.get(Users.class, 1);*/
+
         if (user == null) {
             response.sendRedirect("UserPages/Login.jsp");
         } else {
             Set<CartProduct> cartProducts = user.getCartProducts();
             for (CartProduct cartProduct : cartProducts) {
-                System.out.println(cartProduct.getCartProductMount()+"/"+cartProduct.getUsers().getIdusers());
+                System.out.println(cartProduct.getCartProductMount() + "/" + cartProduct.getUsers().getIdusers());
             }
-            response.sendRedirect("UserPages/Login.jsp");
+            request.setAttribute("cartProducts", cartProducts);
+            RequestDispatcher rd = request.getRequestDispatcher("/UserPages/Cart.jsp");
+            rd.forward(request, response);
         }
 
     }

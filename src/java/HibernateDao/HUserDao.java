@@ -7,7 +7,9 @@ package HibernateDao;
 
 import HibernateEntity.Users;
 import dao.DoaInterface;
+import db.HDBconnect;
 import java.util.List;
+import org.hibernate.Session;
 
 /**
  *
@@ -22,7 +24,11 @@ public class HUserDao  implements DoaInterface<Users>{
 
     @Override
     public int update(Users bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = HDBconnect.getInstance().getSession();
+        session.beginTransaction();
+        session.update(bean);
+        session.getTransaction().commit();
+        return 1;
     }
 
     @Override

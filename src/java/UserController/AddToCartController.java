@@ -38,7 +38,7 @@ public class AddToCartController extends HttpServlet {
             cartProduct.setCartProductDate(new Date());
             cartProduct.setCartProductMount(Integer.parseInt(request.getParameter("productMount")));
             Product p = new Product();
-            p.setIdproduct(Integer.parseInt(request.getParameter("idProduct")));
+            p.setIdproduct(Integer.parseInt(request.getParameter("idproduct")));
             cartProduct.setProduct(p);
             /*      cartProduct.setUsers(user);
              HCartProductDao cartProductDao = new HCartProductDao();

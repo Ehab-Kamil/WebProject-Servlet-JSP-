@@ -104,8 +104,4 @@ public class CartProduct implements java.io.Serializable {
         this.cartProductDate = cartProductDate;
     }
 
-    public float getTotalProduct() {
-        return (product.getProductPrice()) * (cartProductMount);
-    }
-
 }

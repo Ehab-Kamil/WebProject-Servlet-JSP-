@@ -30,6 +30,26 @@
         <servlet-class>AdminPackage.AdminDeleteCategoryController</servlet-class>
     </servlet>
     <!--Aya Mahmoud/Adding servlets configuration-->
+    <servlet>
+        <servlet-name>BuyCartController</servlet-name>
+        <servlet-class>UserController.BuyCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>UserController.CartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCartController</servlet-name>
+        <servlet-class>UserController.DeleteCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditCartController</servlet-name>
+        <servlet-class>UserController.EditCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCartController</servlet-name>
+        <servlet-class>UserController.AddToCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminIndexController</servlet-name>
         <url-pattern>/AdminIndexController</url-pattern>
@@ -60,11 +80,34 @@
         <url-pattern>/AdminDeleteCategoryController</url-pattern>
     </servlet-mapping>
     <!--Aya Mahmoud/Adding servlets mapping configuration-->
+    <servlet-mapping>
+        <servlet-name>BuyCartController</servlet-name>
+        <url-pattern>/BuyCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/CartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCartController</servlet-name>
+        <url-pattern>/DeleteCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditCartController</servlet-name>
+        <url-pattern>/EditCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartController</servlet-name>
+        <url-pattern>/AddToCartController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>IndexController</welcome-file>
+    </welcome-file-list>
     <security-constraint>
         <display-name>secure</display-name>
         <web-resource-collection>

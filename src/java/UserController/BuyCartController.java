@@ -36,7 +36,7 @@ public class BuyCartController extends HttpServlet {
         CartProduct cartProduct = cartProductDao.selectById(idcartProduct);
         
         boolean ch = true;
-        if (user.getUserCharge() < cartProduct.getTotalProduct());
+        if (user.getUserCharge() < (cartProduct.getProduct().getProductPrice()*cartProduct.getCartProductMount()));
         {
             response.sendRedirect("balance.html");
             ch = false;
@@ -49,7 +49,7 @@ public class BuyCartController extends HttpServlet {
             Payment payment = new Payment();
             payment.setPaymentDate(new java.util.Date());
             payment.setPaymentDiscount(0.0F);
-            payment.setPaymentTotal(cartProduct.getTotalProduct());
+            payment.setPaymentTotal(cartProduct.getProduct().getProductPrice()*cartProduct.getCartProductMount());
             payment.setUsers(user);
             payment.addCartProduct(cartProduct);
             
