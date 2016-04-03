@@ -5,13 +5,20 @@
  */
 package UserController;
 
+import HibernateDao.HUserDao;
+import HibernateEntity.Users;
+import db.HDBconnect;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.Set;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -72,7 +79,40 @@ public class SignupController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                HttpSession session = request.getSession(true);
+
+        Users user=new Users();
+        HUserDao hUserDao=new HUserDao();
+
+        boolean checkName=hUserDao.chechMail(request.getParameter("userName"));
+        boolean checkMail=hUserDao.checkName(request.getParameter("userEmail"));
+        boolean checkSSN=hUserDao.checkSSN(Integer.parseInt(request.getParameter("userSsn")));
+        if(!checkMail && !checkName &&!checkSSN)
+        {
+            user.setUserName(request.getParameter("userName"));
+            user.setUserEmail(request.getParameter("userEmail"));
+            user.setUserSsn(Integer.parseInt(request.getParameter("userSsn")));
+            user.setUserCharge(Float.parseFloat(request.getParameter("userCharge")));
+            user.setUserPassword(request.getParameter("userPassword"));
+            user.setUserRegdate(new Date());
+            user.setUserZip(0);
+                               System.out.println("Insertion done");
+
+            //cartProduct.setUsers(user);
+                HDBconnect.getInstance().getSession().beginTransaction();
+               HDBconnect.getInstance().getSession().persist(user);
+                 HDBconnect.getInstance().getSession().getTransaction().commit();
+                   System.out.println("Insertion done");
+            response.sendRedirect("UserPages/welcome.jsp");
+            session = request.getSession(true);
+            session.setAttribute("user", user);
+        }
+        else{
+            request.setAttribute("user", user);
+            System.out.println(user.getUserEmail());
+            RequestDispatcher rd=request.getRequestDispatcher("UserPages/Signup.jsp");
+            rd.forward(request, response);
+        }
     }
 
     /**
