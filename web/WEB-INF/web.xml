@@ -66,6 +66,10 @@
         <servlet-name>AdminShowProfileController</servlet-name>
         <servlet-class>AdminPackage.AdminShowProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>searchController</servlet-name>
+        <servlet-class>UserController.searchController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminIndexController</servlet-name>
         <url-pattern>/AdminIndexController</url-pattern>
@@ -132,8 +136,14 @@
         <servlet-name>AdminShowProfileController</servlet-name>
         <url-pattern>/AdminShowProfileController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchController</servlet-name>
+        <url-pattern>/searchController</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>30</session-timeout>
+        <session-timeout>
+            30
+        </session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>IndexController</welcome-file>
@@ -144,6 +154,8 @@
             <web-resource-name>secure</web-resource-name>
             <description/>
             <url-pattern>/AdminPages/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
             <description>manager</description>

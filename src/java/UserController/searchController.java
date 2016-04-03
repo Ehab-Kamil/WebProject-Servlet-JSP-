@@ -90,7 +90,7 @@ public class searchController extends HttpServlet {
             
         }
         }
-        RequestDispatcher rd = request.getRequestDispatcher("/WebProjectServletJsp/UserPages/products.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/UserPages/products.jsp");
         rd.forward(request, response);
         
 //        HttpSession session = request.getSession(true);

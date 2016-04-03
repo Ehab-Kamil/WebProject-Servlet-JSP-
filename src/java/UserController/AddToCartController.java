@@ -6,6 +6,7 @@
 package UserController;
 
 import HibernateDao.HCartProductDao;
+import HibernateDao.HProductDao;
 import HibernateDao.HUserDao;
 import HibernateEntity.*;
 import java.io.IOException;
@@ -34,14 +35,16 @@ public class AddToCartController extends HttpServlet {
         if (user == null) {
             response.sendRedirect("UserPages/Login.jsp");
         } else {
+            HCartProductDao cartProductDao = new HCartProductDao();
+            HProductDao pDao = new HProductDao();
             CartProduct cartProduct = new CartProduct();
             cartProduct.setCartProductDate(new Date());
             cartProduct.setCartProductMount(Integer.parseInt(request.getParameter("productMount")));
-            Product p = new Product();
-            p.setIdproduct(Integer.parseInt(request.getParameter("idproduct")));
+//            Product p = new Product();
+//            p.setIdproduct(Integer.parseInt(request.getParameter("idproduct")));
+            Product p = pDao.selectById(Integer.parseInt(request.getParameter("idproduct")));
             cartProduct.setProduct(p);
             cartProduct.setUsers(user);
-            HCartProductDao cartProductDao = new HCartProductDao();
             int insert = cartProductDao.insert(cartProduct);
 
             //user.getCartProducts().add(cartProduct);

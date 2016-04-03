@@ -39,10 +39,10 @@ public class DeleteCartController extends HttpServlet {
 
             HCartProductDao cartProductDao = new HCartProductDao();
             CartProduct cartProduct = cartProductDao.selectById(idcartProduct);
-
+            
             cartProductDao.delete(cartProduct);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/WebProjectServletJsp/CartController");
+            RequestDispatcher rd = request.getRequestDispatcher("/CartController");
             rd.forward(request, response);
         }
 

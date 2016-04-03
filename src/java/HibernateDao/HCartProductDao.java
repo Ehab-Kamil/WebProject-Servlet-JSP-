@@ -71,7 +71,7 @@ public class HCartProductDao implements DoaInterface<CartProduct> {
         try {
             transaction = session.beginTransaction();
             session.delete(cartProduct);
-            session.beginTransaction().commit();
+            session.getTransaction().commit();
             ch = 1;
         } catch (HibernateException e) {
             if (transaction != null) {
@@ -90,7 +90,7 @@ public class HCartProductDao implements DoaInterface<CartProduct> {
         session = HDBconnect.getInstance().getSession();
         CartProduct cartProduct = null;
         try {
-            session.beginTransaction();
+            session.getTransaction().begin();
             cartProduct = (CartProduct) session.get(CartProduct.class, id);
             session.getTransaction().commit();
         } catch (HibernateException e) {
@@ -160,7 +160,7 @@ public class HCartProductDao implements DoaInterface<CartProduct> {
 
             throw e;
         } finally {
-        //    session.close();
+//            session.close();
         }
         return cpList;
     }
