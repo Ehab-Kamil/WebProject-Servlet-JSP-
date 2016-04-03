@@ -5,11 +5,9 @@
  */
 package AdminPackage;
 
-import HibernateDao.HCategoriesDao;
 import dao.CategoriesDao;
 import dao.ProductDao;
-//import entity.Categories;
-import HibernateEntity.Categories;
+import entity.Categories;
 import entity.Product;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,13 +26,18 @@ public class AdminDeleteCategoryController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-       HCategoriesDao catDao = new HCategoriesDao();
+        CategoriesDao getCats = new CategoriesDao();
+        ProductDao pro = new ProductDao();
         String id = request.getParameter("id_");
         int i = Integer.parseInt(id);
         if(i != 0){
-            Categories category = catDao.selectById(i);
-            catDao.delete(category);
+        ArrayList<Product> arPro = pro.selectProductsByCategoryId(i);
+        for(int j=0; j<arPro.size(); j++)
+        {
+            pro.delete(arPro.get(j));
         }
+        Categories cat = getCats.selectById(i);
+        getCats.delete(cat);}
         response.sendRedirect("AdminCategoryController");
     }
 

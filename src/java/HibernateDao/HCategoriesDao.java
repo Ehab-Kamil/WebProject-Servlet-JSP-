@@ -10,7 +10,6 @@ import HibernateEntity.Categories;
 import db.HDBconnect;
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -18,18 +17,15 @@ import org.hibernate.Session;
  *
  * @author Ehab
  */
-public class HCategoriesDao implements DoaInterface<Categories> {
+public class HCategoriesDao implements DoaInterface<Categories>{
 
     Session session;
     Categories cat;
-
+    
+    
     @Override
     public int insert(Categories bean) {
-        session = HDBconnect.getInstance().getSession();
-        session.beginTransaction();
-        session.persist(bean);
-        session.getTransaction().commit();
-        return 0;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -39,28 +35,16 @@ public class HCategoriesDao implements DoaInterface<Categories> {
 
     @Override
     public int delete(Categories bean) {
-        session = HDBconnect.getInstance().getSession();
-        try {
-            session.getTransaction().begin();
-            session.delete(bean);
-            session.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-        }
-        finally{
-          //  session.close();
-        }
-        
-        return 0;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Categories selectById(int id) {
-        session = HDBconnect.getInstance().getSession();
-        session.beginTransaction();
-        Categories category = (Categories) session.createQuery("from  Categories c where c.idcategory = :id").setParameter("id", id).uniqueResult();
-        session.getTransaction().commit();
-        return category;
+      
+        session =HDBconnect.getInstance().getSession();
+//        Query query =session.createQuery("from  p wher");
+        
+    return null ;
     }
 
     @Override
@@ -70,11 +54,12 @@ public class HCategoriesDao implements DoaInterface<Categories> {
 
     @Override
     public ArrayList<Categories> selectAll() {
-        session = HDBconnect.getInstance().getSession();
-        session.beginTransaction();
-        Query query = session.createQuery("from Categories c");
+      
+        session =HDBconnect.getInstance().getSession();
+        Query query =session.createQuery("from Categories c");
         ArrayList<Categories> categoryList = (ArrayList) query.list();
-        session.getTransaction().commit();
+        
         return categoryList;
     }
+    
 }
