@@ -1,4 +1,3 @@
-
 package HibernateDao;
 
 import HibernateEntity.CartProduct;
@@ -29,7 +28,7 @@ public class HCartProductDao implements DoaInterface<CartProduct> {
 
             transaction = session.beginTransaction();
             session.persist(cartProduct);
-            session.beginTransaction().commit();
+            session.getTransaction().commit();
             ch = 1;
         } catch (HibernateException e) {
             if (transaction != null) {
@@ -37,7 +36,10 @@ public class HCartProductDao implements DoaInterface<CartProduct> {
             }
             ch = 0;
             throw e;
+        } finally {
+        //    session.close();
         }
+
         return ch;
     }
 
@@ -56,6 +58,8 @@ public class HCartProductDao implements DoaInterface<CartProduct> {
             }
             ch = 0;
             throw e;
+        } finally {
+        //    session.close();
         }
         return ch;
     }
@@ -75,6 +79,8 @@ public class HCartProductDao implements DoaInterface<CartProduct> {
             }
             ch = 0;
             throw e;
+        } finally {
+        //    session.close();
         }
         return ch;
     }
@@ -82,9 +88,20 @@ public class HCartProductDao implements DoaInterface<CartProduct> {
     @Override
     public CartProduct selectById(int id) {
         session = HDBconnect.getInstance().getSession();
-        session.beginTransaction();
-        CartProduct cartProduct = (CartProduct) session.get(CartProduct.class, id);
-        session.beginTransaction().commit();
+        CartProduct cartProduct = null;
+        try {
+            session.beginTransaction();
+            cartProduct = (CartProduct) session.get(CartProduct.class, id);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+
+            throw e;
+        } finally {
+        //    session.close();
+        }
         return cartProduct;
     }
 
@@ -96,25 +113,72 @@ public class HCartProductDao implements DoaInterface<CartProduct> {
     @Override
     public List<CartProduct> selectAll() {
         session = HDBconnect.getInstance().getSession();
-        Query query = session.createQuery("from CartProduct");
+        Query query = null;
+        try {
+            query = session.createQuery("from CartProduct");
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+
+            throw e;
+        } finally {
+        //    session.close();
+        }
         return query.list();
     }
 
     public int deleteAll(Users user) {
         session = HDBconnect.getInstance().getSession();
-        Query query = session.createQuery("delete CartProduct c where c.Users=?").setEntity(0, user);
+        Query query = null;
+        try {
+            query = session.createQuery("delete CartProduct c where c.Users=?").setEntity(0, user);
+            query.executeUpdate();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+
+            throw e;
+        } finally {
+        //    session.close();
+        }
         return 1;
     }
 
     public List<CartProduct> selectByUser(Users user) {
         session = HDBconnect.getInstance().getSession();
-        List<CartProduct> cpList = session.createQuery("from CartProduct c where c.Users=? and c.Payment is empty").setEntity(0, user).list();
+        List<CartProduct> cpList = null;
+        try {
+            session.beginTransaction();
+            cpList = session.createQuery("from CartProduct c where c.users=? and c.payment is null").setEntity(0, user).list();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+
+            throw e;
+        } finally {
+        //    session.close();
+        }
         return cpList;
     }
 
     public List<CartProduct> selectByPayment(Payment payment) {
         session = HDBconnect.getInstance().getSession();
-        List<CartProduct> cpList = session.createQuery("from CartProduct c where p.Payment=?").setEntity(0, payment).list();
+        List<CartProduct> cpList = null;
+        try {
+            cpList = session.createQuery("from CartProduct c where p.Payment=?").setEntity(0, payment).list();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+
+            throw e;
+        } finally {
+        //    session.close();
+        }
         return cpList;
     }
 
@@ -122,7 +186,7 @@ public class HCartProductDao implements DoaInterface<CartProduct> {
         session = HDBconnect.getInstance().getSession();
         session.beginTransaction();
         session.persist(cartProduct.getPayment());
-        session.beginTransaction().commit();
+        session.getTransaction().commit();
         update(cartProduct);
         return 1;
     }

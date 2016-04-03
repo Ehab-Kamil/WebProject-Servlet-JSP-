@@ -175,7 +175,7 @@ public class Users implements java.io.Serializable {
         this.userZip = userZip;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
     public Set<Payment> getPayments() {
         return this.payments;
     }
@@ -196,7 +196,7 @@ public class Users implements java.io.Serializable {
         this.categorieses = categorieses;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
     public Set<CartProduct> getCartProducts() {
         return this.cartProducts;
     }

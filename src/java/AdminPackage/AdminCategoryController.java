@@ -5,8 +5,8 @@
  */
 package AdminPackage;
 
-import dao.CategoriesDao;
-import entity.Categories;
+import HibernateDao.HCategoriesDao;
+import HibernateEntity.Categories;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -25,7 +25,7 @@ public class AdminCategoryController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CategoriesDao getCats = new CategoriesDao();
+        HCategoriesDao getCats = new HCategoriesDao();
         ArrayList<Categories> list = (ArrayList<Categories>) getCats.selectAll();
         request.setAttribute("catsName", list);
         RequestDispatcher rd = request.getRequestDispatcher("/AdminPages/AdminShowCategories.jsp");
@@ -36,9 +36,8 @@ public class AdminCategoryController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         String name = request.getParameter("cat_name");
         Categories cat = new Categories();
-        CategoriesDao catDao = new CategoriesDao();
-        ArrayList<Categories> cats = new ArrayList();
-        cats = catDao.selectAll();
+        HCategoriesDao catDao = new HCategoriesDao();
+        ArrayList<Categories> cats = catDao.selectAll();
         boolean exists=false;
         for(int i=0; i<cats.size(); i++)
         {

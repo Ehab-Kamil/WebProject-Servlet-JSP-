@@ -29,7 +29,7 @@
                         <th>Product Price</th>
                         <th>Product Category</th>
                     </tr>
-
+                    <c:if test="${requestScope.categories !=null}">
                     <c:forEach items="${requestScope.categories}" var="cat">
                         <c:forEach items="${cat.productCollection}" var="Product">
                             <%--<c:forEach items="${cat.products}" var="Product">--%>
@@ -49,6 +49,26 @@
                             </tr>     
                         </c:forEach>
                     </c:forEach>
+                    </c:if> 
+                        <c:if test="${requestScope.category !=null}">
+                            <c:forEach items="${cat.productCollection}" var="Product">
+                            <%--<c:forEach items="${cat.products}" var="Product">--%>
+                            <tr><td contenteditable="true"><c:out value="${Product.idproduct}"/></td>
+                                <td>
+                                    <c:out value="${Product.productName}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${Product.productPrice}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${cat.categoryName}"/>
+                                </td>
+                                <td>
+                                    <a href="/WebProjectServletJsp/AdminEditProductController?pid=${Product.idproduct}" class="btn btn-primary">Edit</a>
+                                </td>
+                            </tr>     
+                        </c:forEach>
+                        </c:if>
                 </table>
             </div>
             <!--<button id="export-btn" class="btn btn-primary" >Export</button>-->

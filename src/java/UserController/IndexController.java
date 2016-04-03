@@ -74,8 +74,11 @@ public class IndexController extends HttpServlet {
             throws ServletException, IOException {
 
         Session session = HDBconnect.getInstance().getSession();
+       
         session.beginTransaction();
         Users user = (Users) session.get(Users.class, 1);
+        session.getTransaction().commit();
+        
         HttpSession httpSession=request.getSession(true);
         httpSession.setAttribute("user", user);
         System.out.println(user.getIdusers()+"/"+user.getUserEmail());

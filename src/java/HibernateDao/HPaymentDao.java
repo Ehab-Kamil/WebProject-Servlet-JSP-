@@ -27,12 +27,17 @@ public class HPaymentDao implements DoaInterface<Payment> {
 
     @Override
     public int insert(Payment bean) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int flag = 0;
         session = HDBconnect.getInstance().getSession();
-        session.beginTransaction();
-        session.persist(bean);
-        session.getTransaction().commit();
-        return 1;
+        try {
+            session.beginTransaction();
+            session.persist(bean);
+            session.getTransaction().commit();
+            flag = 1;
+        } catch (Exception e) {
+            flag = 0;
+        }
+        return flag;
     }
 
     @Override
@@ -70,7 +75,7 @@ public class HPaymentDao implements DoaInterface<Payment> {
         criteria.add(Restrictions.eq("users.idusers", id));
         criteria.add(Property.forName("paymentDate").eq(maxQuery));
         List<Payment> result = criteria.list();
-        if (result.size()>0) {
+        if (result.size() > 0) {
             return result.get(result.size() - 1);
         } else {
             return null;

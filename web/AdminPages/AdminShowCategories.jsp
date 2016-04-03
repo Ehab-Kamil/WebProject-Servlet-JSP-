@@ -30,7 +30,7 @@
                     <c:forEach items="${requestScope.catsName}" var="cat">
                       <tr>
                         <td><c:out value="${cat.categoryName}"/></td>
-                        <td><a href="AdminAllProductOfCategoryController?id=${cat.idcategory}">View products</a></td>
+                        <td><a href="AdminProductController?id=${cat.idcategory}">View products</a></td>
                         <td>
                           <!--<span class="table-remove glyphicon glyphicon-remove" title="Check products before removing all?"></span>-->
                           <a href="AdminDeleteCategoryController?id_=${cat.idcategory}" title="Check products before removing all?" class="table-remove">Delete</a>

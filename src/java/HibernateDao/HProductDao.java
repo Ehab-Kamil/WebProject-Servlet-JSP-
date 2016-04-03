@@ -89,4 +89,16 @@ public class HProductDao implements DoaInterface<Product> {
         return productList;
     }
 
+    public List<Product> search(String keyword) {
+
+        session = HDBconnect.getInstance().getSession();
+        
+        String hql = "from Product p where productName like :keyword";
+//        String keyword = "test";
+        Query query = session.createQuery(hql);
+        query.setParameter("keyword", "%" + keyword + "%");
+        List<Product> productList = (List) query.list();
+
+        return productList;
+    }
 }

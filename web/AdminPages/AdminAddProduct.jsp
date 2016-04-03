@@ -27,20 +27,20 @@
                     </div>
                     <div> 	
                         <span>Product Category</span>
-                        <input type="number" name="productCategory" id="productCategory" required> 
+                        <input type="number" name="productCategory" id="productCategory" required min="0"/> 
                     </div>
                     
                     <div> 	
                         <span>Quantity Available</span>
-                        <input type="number" name="productQuantityAvailable" id="productQuantityAvailable" required> 
+                        <input type="number" name="productQuantityAvailable" id="productQuantityAvailable" required min="0"> 
                     </div>
                     <div> 	
                         <span>Product Price</span>
-                        <input type="number" name="productPrice" id="productPrice" required> 
+                        <input type="number" name="productPrice" id="productPrice" required min="0"> 
                     </div>
                     <div> 
                         <span >Quantity Sold</span>
-                        <input type="number" name="productQuantitySold" id="productQuantitySold" required>
+                        <input type="number" name="productQuantitySold" id="productQuantitySold" required min="0">
                     </div>
                     <div> 	
                         <span>Choose File</span>

@@ -9,13 +9,15 @@ import HibernateEntity.Users;
 import dao.DoaInterface;
 import db.HDBconnect;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
  * @author Ehab
  */
-public class HUserDao  implements DoaInterface<Users>{
+public class HUserDao implements DoaInterface<Users> {
 
     @Override
     public int insert(Users bean) {
@@ -24,10 +26,20 @@ public class HUserDao  implements DoaInterface<Users>{
 
     @Override
     public int update(Users bean) {
+        Transaction transaction = null;
         Session session = HDBconnect.getInstance().getSession();
-        session.beginTransaction();
-        session.update(bean);
-        session.getTransaction().commit();
+        try {
+            transaction = session.beginTransaction();
+            session.update(bean);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw e;
+        } finally {
+            //    session.close();
+        }
         return 1;
     }
 
@@ -50,5 +62,5 @@ public class HUserDao  implements DoaInterface<Users>{
     public List<Users> selectAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

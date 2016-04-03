@@ -5,9 +5,11 @@
  */
 package UserController;
 
+import HibernateDao.HCartProductDao;
 import HibernateEntity.CartProduct;
 import HibernateEntity.Users;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,10 +33,13 @@ public class CartController extends HttpServlet {
         if (user == null) {
             response.sendRedirect("UserPages/Login.jsp");
         } else {
-            Set<CartProduct> cartProducts = user.getCartProducts();
+            HCartProductDao hCartProductDao=new HCartProductDao();
+            List<CartProduct> cartProducts = hCartProductDao.selectByUser(user);
+            
             for (CartProduct cartProduct : cartProducts) {
-                System.out.println(cartProduct.getCartProductMount() + "/" + cartProduct.getUsers().getIdusers());
+                System.out.println(cartProduct.getIdcartProduct());
             }
+
             request.setAttribute("cartProducts", cartProducts);
             RequestDispatcher rd = request.getRequestDispatcher("/UserPages/Cart.jsp");
             rd.forward(request, response);

@@ -36,12 +36,13 @@ public class BuyCartController extends HttpServlet {
         CartProduct cartProduct = cartProductDao.selectById(idcartProduct);
         
         boolean ch = true;
-        if (user.getUserCharge() < (cartProduct.getProduct().getProductPrice()*cartProduct.getCartProductMount()));
+        if (user.getUserCharge() < (cartProduct.getProduct().getProductPrice()*cartProduct.getCartProductMount()))
         {
-            response.sendRedirect("balance.html");
+            response.sendRedirect("/WebProjectServletJsp/UserPages/balance.jsp");
             ch = false;
         }
         if (cartProduct.getProduct().getProductQuntityavailable() < cartProduct.getCartProductMount()) {
+            response.sendRedirect("/WebProjectServletJsp/UserPages/carterror.jsp");
             System.out.println("product not available");
             ch = false;
         }
@@ -51,9 +52,15 @@ public class BuyCartController extends HttpServlet {
             payment.setPaymentDiscount(0.0F);
             payment.setPaymentTotal(cartProduct.getProduct().getProductPrice()*cartProduct.getCartProductMount());
             payment.setUsers(user);
+           
+            cartProduct.getProduct().setProductQuntityavailable(cartProduct.getProduct().getProductQuntityavailable()-cartProduct.getCartProductMount());
             payment.addCartProduct(cartProduct);
             
+            HPaymentDao hPaymentDao=new HPaymentDao();
+            hPaymentDao.insert(payment);
+            
             user.addPayment(payment);
+            user.setUserCharge(user.getUserCharge()-(cartProduct.getProduct().getProductPrice()*cartProduct.getCartProductMount()));
             
             
            /* HPaymentDao paymentDao=new HPaymentDao();
@@ -67,7 +74,7 @@ public class BuyCartController extends HttpServlet {
 
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
-            response.sendRedirect("checkout.jsp");
+            response.sendRedirect("/WebProjectServletJsp/CartController");
         }
     }
 

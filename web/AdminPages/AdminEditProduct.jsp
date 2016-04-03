@@ -21,7 +21,7 @@
                         <div class="flexslider">
                             <ul class="slides">
                                 <li data-thumb="images/si.jpg">
-                                    <div class="thumb-image"> <img src="${requestScope.product.productImg}" data-imagezoom="true" class="img-responsive"> </div>
+                                    <div class="thumb-image"> <img src="/WebProjectServletJsp/productImage?imageName=${product.getProductImg()}&width=666&height=363" data-imagezoom="true" class="img-responsive"> </div>
                             </li>
 
                         </ul>

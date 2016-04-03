@@ -40,23 +40,24 @@ public class AddToCartController extends HttpServlet {
             Product p = new Product();
             p.setIdproduct(Integer.parseInt(request.getParameter("idproduct")));
             cartProduct.setProduct(p);
-            /*      cartProduct.setUsers(user);
-             HCartProductDao cartProductDao = new HCartProductDao();
-             int insert = cartProductDao.insert(cartProduct);*/
-            user.addCartProduct(cartProduct);
-            HUserDao userDao=new HUserDao();
-            userDao.update(user);
-            //    session.setAttribute("user", user);
-            //    response.sendRedirect("IndexController");
+            cartProduct.setUsers(user);
+            HCartProductDao cartProductDao = new HCartProductDao();
+            int insert = cartProductDao.insert(cartProduct);
+
+            user.getCartProducts().add(cartProduct);
+            /*  user.addCartProduct(cartProduct);
+             HUserDao userDao=new HUserDao();
+             userDao.update(user);
+             */
+            session.setAttribute("user", user);
+            response.sendRedirect("/WebProjectServletJsp/IndexController");
 
         }
     }
 
-        @Override
-        public String getServletInfo
-        
-            () {
+    @Override
+    public String getServletInfo() {
         return "Short description";
-        }// </editor-fold>
+    }// </editor-fold>
 
-    }
+}
