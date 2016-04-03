@@ -44,7 +44,7 @@ public class AddToCartController extends HttpServlet {
             HCartProductDao cartProductDao = new HCartProductDao();
             int insert = cartProductDao.insert(cartProduct);
 
-            user.getCartProducts().add(cartProduct);
+            //user.getCartProducts().add(cartProduct);
             /*  user.addCartProduct(cartProduct);
              HUserDao userDao=new HUserDao();
              userDao.update(user);

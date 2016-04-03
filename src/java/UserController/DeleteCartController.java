@@ -29,26 +29,29 @@ public class DeleteCartController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession(false);
+        Users user = (Users) session.getAttribute("user");
+        if (user == null) {
+            response.sendRedirect("/WebProjectServletJsp/UserPages/Login.jsp");
+        } else {
+
+            int idcartProduct = Integer.parseInt(request.getParameter("idcartProduct"));
+
+            HCartProductDao cartProductDao = new HCartProductDao();
+            CartProduct cartProduct = cartProductDao.selectById(idcartProduct);
+
+            cartProductDao.delete(cartProduct);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/WebProjectServletJsp/CartController");
+            rd.forward(request, response);
+        }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        HttpSession session = request.getSession(false);
-        Users user = (Users) session.getAttribute("user");
-        if (user == null) {
-            response.sendRedirect("UserPages/Login.jsp");
-        } else {
-            int idcartProduct = Integer.parseInt(request.getParameter("idcartProduct"));
-            HCartProductDao cartProductDao = new HCartProductDao();
-            CartProduct cartProduct = cartProductDao.selectById(idcartProduct);
-            cartProductDao.delete(cartProduct);
-            
-            RequestDispatcher rd = request.getRequestDispatcher("CartController");
-            rd.forward(request, response);
-        }
+
     }
 
     /**
