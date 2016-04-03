@@ -5,13 +5,20 @@
  */
 package UserController;
 
+import HibernateDao.HUserDao;
+import dao.UsersDao;
+import db.HDBconnect;
+//import HibernateEntity.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.hibernate.Query;
 
 /**
  *
@@ -72,7 +79,45 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        entity.Users u=new entity.Users();
+//       
+//        u.setUserEmail(request.getParameter("userEmail"));
+//        u.setUserPassword(request.getParameter("userPassword"));
+//       
+//        UsersDao userDao = new UsersDao();
+//        
+//        entity.Users user = userDao.login(u);
+//        if (user !=null) {
+//            HttpSession session=request.getSession(true);
+//           session.setAttribute("user", user);
+//            System.out.println("login :"+user.getUserName());          
+//            response.sendRedirect("index.jsp");
+//        } else {
+//            response.sendRedirect("login.jsp");
+//        }
+        //-------------------------
+        //---------Hibernate-------------
+        //--------------------------
+        HibernateEntity.Users user=new HibernateEntity.Users();
+       HUserDao userDao = new HUserDao();
+       String email=request.getParameter("userEmail");
+       String password=request.getParameter("userPassword");
+//         user = HUserDao.login(email,password);
+        String query="from Users  where userEmail=? and userPassword=?";
+        Query q=HDBconnect.getInstance().getSession().createQuery(query).setString(0, email).setString(1, password);
+        List<HibernateEntity.Users> result=q.list();
+         user=result.get(0);
+//       
+        if(!result.isEmpty())
+        {
+            HttpSession session=request.getSession(true);
+           session.setAttribute("user",user);
+//            System.out.println("login :"+user.getUserName());          
+            response.sendRedirect("UserPages/Index.jsp");
+        } else {
+            response.sendRedirect("UserPages/Login.jsp");
+        }
+
     }
 
     /**
