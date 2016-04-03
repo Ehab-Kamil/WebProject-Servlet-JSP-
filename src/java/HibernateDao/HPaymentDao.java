@@ -65,6 +65,23 @@ public class HPaymentDao implements DoaInterface<Payment> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public List<Payment> selectAllByID( int id) {
+        session = HDBconnect.getInstance().getSession();
+
+        DetachedCriteria maxQuery = DetachedCriteria.forClass(Payment.class);
+        maxQuery.setProjection(Projections.max("paymentDate"));
+
+        Criteria criteria = session.createCriteria(Payment.class);
+        criteria.add(Restrictions.eq("users.idusers", id));
+        criteria.add(Property.forName("paymentDate").eq(maxQuery));
+        List<Payment> result = criteria.list();
+        if (result.size() > 0) {
+            return result;
+        } else {
+            return null;
+        }
+    }
+    
     public Payment selectLastPaymentByUserId(int id) {
         session = HDBconnect.getInstance().getSession();
 

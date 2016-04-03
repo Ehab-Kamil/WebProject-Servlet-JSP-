@@ -70,13 +70,11 @@ public class HCategoriesDao implements DoaInterface<Categories> {
 
     @Override
     public ArrayList<Categories> selectAll() {
-
-       session = HDBconnect.getInstance().getSession();
+        session = HDBconnect.getInstance().getSession();
         session.beginTransaction();
         Query query = session.createQuery("from Categories c");
         ArrayList<Categories> categoryList = (ArrayList) query.list();
         session.getTransaction().commit();
         return categoryList;
     }
-
 }

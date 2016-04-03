@@ -121,7 +121,7 @@
                             </c:if>
                             <c:if test="${empty sessionScope.user}">
                                 <li><a class="color4" href="Login.jsp">Login</a></li>
-                                <li>
+<!--                                <li>
                                     <a href="#" id="color4"><span>Login</span></a>
                                     <div id="loginContainer" class="mepanel"><a href="#" id="loginButton"><span>Login</span></a>
                                         <div id="loginBox">                
@@ -142,7 +142,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                </li>
+                                </li>-->
                                 <li><a class="color6" href="Signup.jsp">Signup</a></li>
                                 </c:if>       
 
