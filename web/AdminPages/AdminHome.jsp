@@ -8,9 +8,9 @@
 <link rel='stylesheet prefetch' href='css/bootstrap.css'>
 <br>
 <center>
-<a href="AdminCategoryController" class="btn btn-primary">Categories</a>
-<a href="AdminUserController" class="btn btn-primary">Users</a>
-<a href="AdminProductController" class="btn btn-primary">Products</a>
+<a href="/WebProjectServletJsp/AdminCategoryController" class="btn btn-primary">Categories</a>
+<a href="/WebProjectServletJsp/AdminUserController" class="btn btn-primary">Users</a>
+<a href="/WebProjectServletJsp/AdminProductController" class="btn btn-primary">Products</a>
 </center>
 <br>
 <jsp:include page="AdminFooter.jsp"></jsp:include>

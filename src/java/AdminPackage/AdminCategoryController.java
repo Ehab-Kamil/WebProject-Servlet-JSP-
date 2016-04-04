@@ -37,8 +37,7 @@ public class AdminCategoryController extends HttpServlet {
         String name = request.getParameter("cat_name");
         Categories cat = new Categories();
         HCategoriesDao catDao = new HCategoriesDao();
-        ArrayList<Categories> cats = new ArrayList();
-        cats = catDao.selectAll();
+        ArrayList<Categories> cats = catDao.selectAll();
         boolean exists=false;
         for(int i=0; i<cats.size(); i++)
         {

@@ -28,6 +28,7 @@
         <script src="/WebProjectServletJsp/js/menu_jquery.js"></script>
         <!--//pop-up-->	
         <script src="/WebProjectServletJsp/js/simpleCart.min.js"></script>
+        <script src="/WebProjectServletJsp/js/sweetalert.min.js"></script>
     </head>
     <body>
         <%--<jsp:useBean id="user" class="entity.Users" scope="session"/>--%>               
@@ -70,7 +71,7 @@
                                             <span class="simpleCart_total"></span> </div>
                                         <img src="/WebProjectServletJsp/images/cart.png" alt=""/></h3>
                                 </a>
-                                <p><a href="DeleteCartController?idcartProduct=-1" class="simpleCart_empty">Empty Cart</a></p>
+                                <p><a href="/WebProjectServletJsp/DeleteCartController?idcartProduct=-1" class="simpleCart_empty">Empty Cart</a></p>
                             </div>
                         </div>
                         <div class="clearfix"> </div>
@@ -81,7 +82,7 @@
             <div class="container">
                 <div class="head-top">
                     <div class="logo">
-                        <h1><a href="Index.jsp">Musican</a></h1>
+                        <h1><a href="/WebProjectServletJsp/IndexController">Musican</a></h1>
                     </div>
                     <div class=" h_menu4">
                         <ul class="memenu skyblue">
@@ -108,9 +109,9 @@
                                                 <div class="h_nav">
                                                     <ul>
                                                         <li><a href="Profile.jsp">My Profile</a></li>
-                                                        <li><a href="Cart.jsp">Shoping Cart</a></li>
-                                                        <li><a href="BillController">Payments</a></li>
-                                                        <li><a href="LogoutController">Log out</a></li>
+                                                        <li><a href="/WebProjectServletJsp/CartController">Shoping Cart</a></li>
+                                                        <li><a href="/WebProjectServletJsp/BillController">Payments</a></li>
+                                                        <li><a href="/WebProjectServletJsp/LogoutController">Log out</a></li>
                                                     </ul>	
                                                 </div>							
                                             </div>				

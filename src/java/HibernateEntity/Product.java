@@ -41,6 +41,7 @@ public class Product  implements java.io.Serializable {
      private Date productLastmodify;
      private String productOptions;
      private Set cartProducts = new HashSet(0);
+     static public final String uplodedImgFolderDestntion = "C:/images/";
 
     public Product() {
     }

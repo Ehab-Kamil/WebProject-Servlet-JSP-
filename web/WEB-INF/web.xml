@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>LoginController</servlet-name>
-        <servlet-class>UserController.LoginController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SignupController</servlet-name>
-        <servlet-class>UserController.SignupController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ProfileController</servlet-name>
-        <servlet-class>UserController.ProfileController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AdminIndexController</servlet-name>
         <servlet-class>AdminPackage.AdminIndexController</servlet-class>
     </servlet>
@@ -42,6 +30,42 @@
         <servlet-class>AdminPackage.AdminDeleteCategoryController</servlet-class>
     </servlet>
     <!--Aya Mahmoud/Adding servlets configuration-->
+    <servlet>
+        <servlet-name>BuyCartController</servlet-name>
+        <servlet-class>UserController.BuyCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>UserController.CartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCartController</servlet-name>
+        <servlet-class>UserController.DeleteCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditCartController</servlet-name>
+        <servlet-class>UserController.EditCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCartController</servlet-name>
+        <servlet-class>UserController.AddToCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddProductController</servlet-name>
+        <servlet-class>AdminPackage.AdminAddProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteUserController</servlet-name>
+        <servlet-class>AdminPackage.AdminDeleteUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminEditProductController</servlet-name>
+        <servlet-class>AdminPackage.AdminEditProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminShowProfileController</servlet-name>
+        <servlet-class>AdminPackage.AdminShowProfileController</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>searchController</servlet-name>
         <servlet-class>UserController.searchController</servlet-class>
@@ -77,20 +101,44 @@
     </servlet-mapping>
     <!--Aya Mahmoud/Adding servlets mapping configuration-->
     <servlet-mapping>
+        <servlet-name>BuyCartController</servlet-name>
+        <url-pattern>/BuyCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/CartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCartController</servlet-name>
+        <url-pattern>/DeleteCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditCartController</servlet-name>
+        <url-pattern>/EditCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartController</servlet-name>
+        <url-pattern>/AddToCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddProductController</servlet-name>
+        <url-pattern>/AdminAddProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteUserController</servlet-name>
+        <url-pattern>/AdminDeleteUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminEditProductController</servlet-name>
+        <url-pattern>/AdminEditProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminShowProfileController</servlet-name>
+        <url-pattern>/AdminShowProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>searchController</servlet-name>
         <url-pattern>/searchController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginController</servlet-name>
-        <url-pattern>/LoginController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SignupController</servlet-name>
-        <url-pattern>/SignupController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ProfileController</servlet-name>
-        <url-pattern>/ProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -100,4 +148,25 @@
     <welcome-file-list>
         <welcome-file>IndexController</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <display-name>secure</display-name>
+        <web-resource-collection>
+            <web-resource-name>secure</web-resource-name>
+            <description/>
+            <url-pattern>/AdminPages/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>manager</description>
+            <role-name>manage</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>DIGEST</auth-method>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>manage</role-name>
+    </security-role>
 </web-app>

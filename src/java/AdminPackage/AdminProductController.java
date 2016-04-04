@@ -64,8 +64,18 @@ public class AdminProductController extends HttpServlet {
             throws ServletException, IOException {
     
          CategoriesDao cDao = new CategoriesDao();
-         ArrayList<Categories> cList = cDao.selectAll();
-         request.setAttribute("categories", cList);
+         ArrayList<Categories> cList = null;
+         Categories category = null;
+         String id = request.getParameter("id");
+         if(id==null) {
+         cList = cDao.selectAll();
+         request.setAttribute("categories", cList);}
+         if(id!=null) {
+             int id_cat = Integer.parseInt(id);
+             category = cDao.selectById(id_cat);
+             request.setAttribute("category", category);
+         }
+         
          RequestDispatcher rd = request.getRequestDispatcher("/AdminPages/AdminShowProducts.jsp");
          rd.forward(request, response);
     }

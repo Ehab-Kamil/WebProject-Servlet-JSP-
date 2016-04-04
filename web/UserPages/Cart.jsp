@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="UserHeader.jsp"></jsp:include>
-<jsp:useBean id="user" class="entity.Users" scope="session"/>  
+<jsp:useBean id="user" class="HibernateEntity.Users" scope="session"/>  
 <!-- grow -->
 <div class="grow">
     <div class="container">
@@ -12,39 +12,38 @@
 <!-- grow -->
 <div class="container">
     <div class="check">	 
-        <h1>My Shopping Bag (${sessionScope.user.cartProductCollection.size()})</h1>
+        <h1>My Shopping Bag (${requestScope.cartProducts.size()})</h1>
         <div class="col-md-9 cart-items">
 
             <c:set var="totalpayment" value="0" scope="page"/>
-            <c:forEach items="${user.cartProductCollection}" var="productList">
-                <c:if test="${productList.paymentIdpayment.idpayment!=0}">
+            <c:forEach items="${cartProducts}" var="productList">
+                <%--<c:if test="${productList.paymentIdpayment.idpayment!=null}">--%>
                     <div class="cart-header">
                         <div class="cart-sec simpleCart_shelfItem">
                             <div class="cart-item cyc">
-                                <img src="${productList.product.productImg}" class="img-responsive" alt=""/>
+                                <img src="/WebProjectServletJsp/productImage?imageName=${productList.product.productImg}&width=20&height=20" class="img-responsive" alt=""/>
+                                
                             </div>
                             <div class="cart-item-info">
                                 <h3><a href="#">${productList.product.productName}</a><span>Category:${productList.product.categories.categoryName}</span></h3>
                                 <ul class="qty">
-                                    <li><p>Size : ${productList.productsize}</p></li>
                                     <li><p>Qty : ${productList.cartProductMount}</p></li>
-                                    <li><p>Color : ${productList.productColor}</p></li>
-                                    <li><p>Total : ${productList.totalProduct}</p></li>
-                                    <c:set var="totalpayment" value="${totalpayment+productList.totalProduct}" scope="page"/>                                    
+                                    <li><p>Total : ${productList.cartProductMount*productList.product.productPrice}</p></li>
+                                    <c:set var="totalpayment" value="${totalpayment+productList.cartProductMount*productList.product.productPrice}" scope="page"/>                                    
                                 </ul>
                                 <div class="delivery">
                                     <ul class="qty">
                                         <li><p>Last Modification : ${productList.cartProductDate}</p></li>
-                                        <li><p><a href="BuyCartController?idcartProduct=${productList.idcartProduct}"><img src="images/buy-32.jpg"></a></p></li>
-                                        <li><p><a href="SingleProductController?id=${productList.product.idproduct}"><img src="images/edit-4-32.jpg"></a></p></li>
-                                        <li><p><a href="DeleteCartController?idcartProduct=${productList.product.idproduct}"><img src="images/delete-32.jpg"></a></p></li>
+                                        <li><p><a href="/WebProjectServletJsp/BuyCartController?idcartProduct=${productList.idcartProduct}"><img src="images/buy-32.jpg"></a></p></li>
+                                        <li><p><a href="/WebProjectServletJsp/EditCartController?idcartProduct=${productList.idcartProduct}"><img src="images/edit-4-32.jpg"></a></p></li>
+                                        <li><p><a href="/WebProjectServletJsp/DeleteCartController?idcartProduct=${productList.idcartProduct}"><img src="images/delete-32.jpg"></a></p></li>
                                     </ul>
                                 </div>	
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                </c:if>
+                                        <%-- </c:if>--%>
             </c:forEach>
         </div>
         <div class="col-md-3 cart-total">

@@ -12,7 +12,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <jsp:include page="UserHeader.jsp"></jsp:include>
     <!DOCTYPE html>
-
     <!-- grow -->
     <div class="grow">
         <div class="container">
@@ -81,3 +80,4 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <jsp:include page="UserFooter.jsp"></jsp:include>
 
+                        
