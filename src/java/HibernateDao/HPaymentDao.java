@@ -13,6 +13,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
@@ -65,38 +66,29 @@ public class HPaymentDao implements DoaInterface<Payment> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Payment> selectAllByID( int id) {
+    public List<Payment> selectAllByID(int id) {
         session = HDBconnect.getInstance().getSession();
 
-        DetachedCriteria maxQuery = DetachedCriteria.forClass(Payment.class);
-        maxQuery.setProjection(Projections.max("paymentDate"));
-
         Criteria criteria = session.createCriteria(Payment.class);
-        criteria.add(Restrictions.eq("users.idusers", id));
-        criteria.add(Property.forName("paymentDate").eq(maxQuery));
+        criteria.add(Restrictions.eq("users.idusers", 4));
         List<Payment> result = criteria.list();
+        
         if (result.size() > 0) {
             return result;
         } else {
             return null;
         }
     }
-    
+
     public Payment selectLastPaymentByUserId(int id) {
         session = HDBconnect.getInstance().getSession();
 
-        DetachedCriteria maxQuery = DetachedCriteria.forClass(Payment.class);
-        maxQuery.setProjection(Projections.max("paymentDate"));
-
         Criteria criteria = session.createCriteria(Payment.class);
         criteria.add(Restrictions.eq("users.idusers", id));
-        criteria.add(Property.forName("paymentDate").eq(maxQuery));
-        List<Payment> result = criteria.list();
-        if (result.size() > 0) {
-            return result.get(result.size() - 1);
-        } else {
-            return null;
-        }
+        criteria.addOrder(Order.desc("paymentDate"));
+        criteria.setMaxResults(1);
+        Payment result = (Payment) criteria.uniqueResult();
+        return result;
     }
 
 }

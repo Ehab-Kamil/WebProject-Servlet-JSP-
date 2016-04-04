@@ -67,35 +67,26 @@ public class BillController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
         Users user = (Users) request.getSession(false).getAttribute("user");
 
         HPaymentDao paymentDao = new HPaymentDao();
         Payment payment = paymentDao.selectLastPaymentByUserId(user.getIdusers());
-//        Payment payment = paymentDao.selectLastPaymentByUserId(3);
-
-        float b_total = 0;
+        //Payment payment = paymentDao.selectLastPaymentByUserId(1);
         if (payment != null) {
 
             Set<CartProduct> cartSet = payment.getCartProducts();
             List<CartProduct> cartProducts = new ArrayList<CartProduct>(cartSet);
-            for (int j = 0; j < cartProducts.size(); j++) {
-                CartProduct cart = cartProducts.get(j);
-                b_total += (cart.getProduct().getProductPrice() * cart.getCartProductMount());
 
-            }
-
-            HttpSession session = request.getSession(true);
-            session.setAttribute("payment", payment);
-            session.setAttribute("cartProducts", cartProducts);
-            session.setAttribute("b_total", b_total);
-            
+            request.setAttribute("payment", payment);
+            request.setAttribute("cartProducts", cartProducts);
 
         } else {
             System.out.println("_____________There is no payment in DB _____________");
         }
         RequestDispatcher rd3 = request.getRequestDispatcher("/UserPages/Bill.jsp");
         rd3.forward(request, response);
+
     }
 
     /**

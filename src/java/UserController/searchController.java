@@ -62,41 +62,19 @@ public class searchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
+
+        String foundMatch = " There is no matching result ";
         String key = request.getParameter("search");
-        System.out.println("------>>> " + key);
+  
         HProductDao productDao = new HProductDao();
         List<Product> productList = productDao.search(key);
-        if (productList.size()> 0){
-        for (Product product : productList) {
-            System.out.println("------------<<>>--------------");
-            System.out.println("id : " + product.getIdproduct());
-            System.out.println("name : " + product.getProductName());
-            System.out.println("dis : " + product.getProductDescription());
-            System.out.println("dis : " + product.getProductPrice());
-            
+        if (productList.size() > 0) {
+            foundMatch = "";
+            request.setAttribute("productList", productList);
         }
-//#8CE78A
-        //request.getServletContext().setAttribute("productList", productList);
-        request.setAttribute("productList", productList);
-        }
-        else 
-        {
-            response.setContentType("text/html;charset=UTF-8");
-            try (PrintWriter out = response.getWriter()) {
-            
-            
-            out.println("There is no matching result");
-            
-        }
-        }
+        request.setAttribute("foundMatch", foundMatch);
         RequestDispatcher rd = request.getRequestDispatcher("/UserPages/products.jsp");
         rd.forward(request, response);
-        
-//        HttpSession session = request.getSession(true);
-//        session.setAttribute("productList", productList);
-//        RequestDispatcher rd3 = request.getRequestDispatcher("/UserPages/products.jsp");
-//        rd3.forward(request, response);
     }
 
     /**
